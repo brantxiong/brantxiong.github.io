@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Brant Xiong's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brant Xiong">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Brant Xiong's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2014/02/22/li-yong-bitbucketjin-xing-teamwork.html"><h1>利用bitbucket进行teamwork</h1></a>
+2014-02-22
+
+by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h2>前言</h2>
+<p>嗯，先简单介绍下<a href="https://bitbucket.org">bitbucket</a>吧~下面引自wikipedia:</p>
+<blockquote>
+<p>Bitbucket是一家为使用Mercurial和Git版本控制系统的项目提供网络托管服务的网站。Bitbucket既提供免费帐号，也提供商业付费方案。免费帐号可以使用无限数量的私有版本库（免费帐号至多支持5名用户）截至2010年9月，而如果用户能邀请3位朋友注册Bitbucket，则至多可以为8名用户提供服务。[1]私有版本库不会在个人页面上展示；如果用户只拥有私有版本库，网站则会显示还没有创建任何版本库，直到这名用户创建了公开版本库为止。Bitbucket使用Python下的DjangoWeb应用框架编写。</p>
+</blockquote>
+<h2>具体步骤</h2>
+<p>利用bitbucket完成teamwork和持续集成的流程如下：</p>
+<div class="highlight"><pre>                   <span class="o">+----------+</span>
+                   <span class="o">|</span> <span class="n">Develop</span>  <span class="o">|</span>
+                   <span class="o">+----+-----+</span>
+                        <span class="o">|</span>
+                        <span class="o">|</span> <span class="n">push</span> <span class="n">with</span> <span class="n">sourcetree</span>
+                        <span class="o">|</span>
+                   <span class="o">+----</span><span class="n">v</span><span class="o">-----+</span>
+                   <span class="o">|</span> <span class="n">Bitbucket</span><span class="o">|</span>
+                   <span class="o">+----+-----+</span>
+                        <span class="o">|</span>
+                        <span class="o">|</span> <span class="n">fetch</span> <span class="n">and</span> <span class="n">release</span> <span class="n">on</span> <span class="n">Server</span>
+                        <span class="o">|</span>
+                   <span class="o">+----</span><span class="n">v</span><span class="o">-----+</span>
+                   <span class="o">|</span> <span class="n">Server</span>   <span class="o">|</span>
+                   <span class="o">+----------+</span>
+</pre></div>
+
+
+<p>即开发在本机完成，利用sourcetree将代码push至bitbucket服务器，最后在服务器端同步代码并发布。</p>
+<h3>服务端配置</h3>
+<p>生成public key并添加至bitbucket</p>
+<p>首先登陆<a href="https://bitbucket.org">https://bitbucket.org</a>,依次选择<code>Username &gt; Account &gt; SSH keys</code>。然后登陆服务器，生成public key：</p>
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~</span> <span class="o">&amp;&amp;</span> <span class="n">mkdir</span> <span class="p">.</span><span class="n">ssh</span>
+<span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="s">&quot;..&quot;</span>
+<span class="n">cat</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span>
+</pre></div>
+
+
+<p>添加完public key之后，执行如下命令：</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">Tv</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span>
+</pre></div>
+
+
+<p>之后即可正常使用git，无需账号密码，例如第一次使用时，如下：</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">First</span> <span class="n">commit</span><span class="err">&#39;</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span><span class="o">:</span><span class="n">YOUR</span><span class="p">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+
+
+<h3>开发机配置</h3>
+<p>代码在自己机器上开发，利用sourcetree上传至bitbucket，下载：<a href="http://www.sourcetreeapp.com/">http://www.sourcetreeapp.com/</a>，教程在<a href="http://blackish.at/blog/wp-content/uploads/2013/04/UnityBitBucketSourceTree_ForAll.pdf">这里</a></p>
+<p>嗯，最后上一张sourcetree的图：
+<img alt="0" src="https://lh3.googleusercontent.com/-4C4DnWmMhGI/UwjTuyOH3AI/AAAAAAAADQ4/QtlEoZ6Y8Ss/s912/QQ%2520Photo20140223004312.jpg" /></p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/git.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+                <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/tech.html">Tech</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="https://www.google.com/ncr">Google</a></li>
+                <li><a href="http://python.org/">Python</a></li>
+                <li><a href="http://docs.getpelican.com/">Pelican</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/brantxiong">Github</a></li>
+                <li><a href="https://bitbucket.org/XiongBo">Bitbucket</a></li>
+                <li><a href="https://plus.google.com/+BrantXiong">Google+</a></li>
+                <li><a href="https://www.quora.com/Brant-Xiong">Quora</a></li>
+                <li><a href="http://stackoverflow.com/users/2670671/alexbob">Stackoverflow</a></li>
+                <li><a href="https://twitter.com/BrantXiong">Twitter</a></li>
+                <li><a href="https://www.facebook.com/hustxiongbo">Facebook</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=207940847">Linkedin</a></li>
+                <li><a href="http://www.renren.com/432432772">人人</a></li>
+                <li><a href="http://weibo.com/1842032257">微博</a></li>
+                <li><a href="http://www.zhihu.com/people/xiong-bo-6">知乎</a></li>
+                <li><a href="http://www.douban.com/people/66459977">豆瓣</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+ 
+</body>
+</html>

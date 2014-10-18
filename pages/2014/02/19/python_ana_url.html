@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Brant Xiong's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brant Xiong">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../../..">Brant Xiong's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../../../../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>记一次捉急的文本处理</h1>
+2014-02-19
+
+by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+        </div>
+	
+        <div><h2>前言</h2>
+<p>今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考</p>
+<h2>异常文件处理</h2>
+<p>删除文件最后的异常行：</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">file</span> <span class="n">in</span> <span class="err">`</span><span class="n">ls</span><span class="err">`</span><span class="p">;</span> <span class="k">do</span> <span class="n">line</span><span class="o">=</span><span class="err">`</span><span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="err">$</span><span class="n">file</span><span class="err">`</span><span class="p">;</span> <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$line&quot;</span> <span class="o">!=</span> <span class="s">&quot;},&quot;</span> <span class="p">];</span> <span class="n">then</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="err">&#39;$</span><span class="n">d</span><span class="err">&#39;</span> <span class="err">$</span><span class="n">file</span><span class="p">;</span><span class="n">fi</span><span class="p">;</span><span class="n">done</span>
+</pre></div>
+
+
+<p>删除目录下的空文件：</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="o">-</span><span class="n">maxdepth</span> <span class="mi">1</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">print0</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="mi">0</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+
+
+<h2>python处理url</h2>
+<p>从url中获取domain name:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">urlparse</span>  <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
+
+<span class="k">def</span> <span class="nf">get_domain_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;{uri.scheme}://{uri.netloc}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
+<p>从url中获取参数，如本例中的wd字段，其中对编码的处理还不够完善，需继续改进~</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">urlparse</span>  <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
+
+<span class="k">def</span> <span class="nf">get_query_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">query_url</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+         <span class="k">try</span><span class="p">:</span>
+             <span class="n">query_url</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">)</span>
+         <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+             <span class="k">return</span> <span class="s">&quot;Unkown Encoding&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+         <span class="n">wd</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">urlparse</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">)[</span><span class="s">&#39;wd&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
+     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+         <span class="n">wd</span> <span class="o">=</span> <span class="s">&quot;Unkown Key&quot;</span>
+    <span class="k">return</span> <span class="n">wd</span>
+</pre></div>
+</td></tr></table>
+
+<h2>其他技巧</h2>
+<p>python计算平均数：</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">average</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">return</span> <span class="kt">float</span><span class="p">(</span><span class="err">&#39;</span><span class="o">%</span><span class="mf">.2f</span><span class="err">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">len</span><span class="p">(</span><span class="n">values</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>python找出list中重复的值：</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">find_dup_value_from_list</span><span class="p">(</span><span class="n">inlist</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="n">in</span> <span class="n">collections</span><span class="p">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">inlist</span><span class="p">).</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+
+<p>python匹配出日志中key=value类型的值：</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">find_value_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="err">&#39;\</span><span class="n">s</span><span class="o">*</span><span class="err">&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="err">&#39;</span><span class="o">=</span><span class="p">(</span><span class="err">\</span><span class="n">w</span><span class="o">+</span><span class="p">)</span><span class="err">\</span><span class="n">s</span><span class="o">*</span><span class="err">&#39;</span> 
+    <span class="k">return</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>总结</h2>
+<p>python的数据结构还需要系统的看下，不然好多基础问题还得Goolge..太影响效率了。囧ｏ（╯□╰）ｏ．．</p>
+<p>嗯，准备系统的看下官方文档：<a href="http://docs.python.org/2/tutorial/index.html">http://docs.python.org/2/tutorial/index.html</a>.嗯，之前<a href="http://blog.felixc.at/">喵大</a>说要看的..．喵的，还没看完！最近抽时间看完！</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'BrantXiong'; 
+    var disqus_title = '记一次捉急的文本处理';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
+                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+                <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/tech.html">Tech</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="https://www.google.com/ncr">Google</a></li>
+                <li><a href="http://python.org/">Python</a></li>
+                <li><a href="http://docs.getpelican.com/">Pelican</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/brantxiong">Github</a></li>
+                <li><a href="https://bitbucket.org/XiongBo">Bitbucket</a></li>
+                <li><a href="https://plus.google.com/+BrantXiong">Google+</a></li>
+                <li><a href="https://www.quora.com/Brant-Xiong">Quora</a></li>
+                <li><a href="http://stackoverflow.com/users/2670671/alexbob">Stackoverflow</a></li>
+                <li><a href="https://twitter.com/BrantXiong">Twitter</a></li>
+                <li><a href="https://www.facebook.com/hustxiongbo">Facebook</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=207940847">Linkedin</a></li>
+                <li><a href="http://www.renren.com/432432772">人人</a></li>
+                <li><a href="http://weibo.com/1842032257">微博</a></li>
+                <li><a href="http://www.zhihu.com/people/xiong-bo-6">知乎</a></li>
+                <li><a href="http://www.douban.com/people/66459977">豆瓣</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+ 
+</body>
+</html>

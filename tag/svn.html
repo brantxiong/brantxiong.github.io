@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Brant Xiong's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brant Xiong">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Brant Xiong's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2014/03/04/ubuntuxia-da-jian-web-svn.html"><h1>ubuntu下搭建web svn</h1></a>
+2014-03-04
+
+by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h2>前言</h2>
+<p>嗯，为了方便开发，需在VPS（环境为ubuntu 12.04）搭建svn服务。本文主要记录下搭建的整体步骤~</p>
+<h2>步骤</h2>
+<h3>安装svn</h3>
+<p>过程主要参考：<a href="https://help.ubuntu.com/community/Subversion">https://help.ubuntu.com/community/Subversion</a></p>
+<p>首先安装subversion </p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">subversion</span> <span class="n">subversion</span><span class="o">-</span><span class="n">tools</span>
+</pre></div>
+
+
+<p>安装完成后，需建立<code>subversion</code>用户组来拥有资源目录，然后将nginx的用户添加到该用户组（假设nginx的配置为<code>user  www-data;</code>）,具体操作如下：</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">groupadd</span> <span class="n">subversion</span>
+<span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="n">subversion</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span>
+<span class="cp">#验证</span>
+<span class="n">sudo</span> <span class="n">groups</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span>
+</pre></div>
+
+
+<p>下面建立svn资源库，以<code>myproject</code>为例   </p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">~/</span><span class="n">svn</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">svn</span>
+<span class="n">sudo</span> <span class="n">mkdir</span> <span class="n">myproject</span>    
+<span class="n">sudo</span> <span class="n">svnadmin</span> <span class="n">create</span> <span class="o">~/</span><span class="n">myproject</span>
+</pre></div>
+
+
+<p>更改目录权限</p>
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~/</span><span class="n">svn</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="o">:</span><span class="n">subversion</span> <span class="n">myproject</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> <span class="n">g</span><span class="o">+</span><span class="n">rws</span> <span class="n">myproject</span>
+</pre></div>
+
+
+<p>下面就可以测试下安装是否OK了~</p>
+<div class="highlight"><pre> <span class="n">svn</span> <span class="n">co</span> <span class="n">file</span><span class="o">:</span><span class="c1">//localhost/home/diors/svn/myproject</span>
+</pre></div>
+
+
+<h3>通过http访问svn</h3>
+<p>因为目前服务器采用的是nginx，但是由于nginx现在暂时不支持subversion，所以只能安装apache集成subversion，然后通过nginx proxy给apache来访问代码仓库。</p>
+<p>安装apache2及subversion模块</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">apache2</span> <span class="n">libapache2</span><span class="o">-</span><span class="n">svn</span>
+</pre></div>
+
+
+<p>修改端口并启动</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">ports</span><span class="p">.</span><span class="n">conf</span>
+<span class="n">sudo</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">apache2</span> <span class="n">restart</span>
+</pre></div>
+
+
+<p>在<code>/etc/apache2/mods-available/dav_svn.conf</code>中添加如下配置：</p>
+<div class="highlight"><pre><span class="err">#</span> <span class="nx">Subversion</span><span class="err">版本可用的</span><span class="nb">URL</span><span class="err">是</span><span class="nx">http</span><span class="p">:</span><span class="c1">//域名或IP/svn</span>
+<span class="o">&lt;</span><span class="nx">Location</span> <span class="p">/</span><span class="nx">svn</span><span class="p">/</span><span class="nx">myproject</span><span class="o">&gt;</span>
+    <span class="err">#</span> <span class="err">告诉</span><span class="nx">Apache</span><span class="err">是哪个模块响应哪个</span><span class="nb">URL</span><span class="err">的请求，在这里是</span><span class="nx">Subversion</span><span class="err">模块</span>
+    <span class="nx">DAV</span> <span class="nx">svn</span>
+
+    <span class="err">#告诉</span><span class="nx">Subversion</span><span class="err">需要查看的版本库在</span><span class="p">/</span><span class="nb">home</span><span class="p">/</span><span class="nx">svn</span><span class="err">之下。</span>
+    <span class="err">#如果不希望为每个单独的项目都进行单独的设置，可以把所有项目都存放在统一的资源库目录</span>
+    <span class="err">#使用</span><span class="nx">SVNParentPath</span><span class="err">指令来指定存放所有项目的路径。否则使用</span><span class="nx">SVNPath</span>
+    <span class="nx">SVNParentPath</span> <span class="err">~</span><span class="p">/</span><span class="nx">svn</span><span class="o">/</span>
+
+    <span class="err">#认证类型为基本认证，就是用户名和密码</span>
+    <span class="nx">AuthType</span> <span class="nx">Basic</span>
+
+    <span class="err">#认证名称，将在浏览器界面弹出一个对话框，标题为</span><span class="nx">Subversion</span> <span class="nx">repository</span>
+    <span class="nx">AuthName</span> <span class="s2">&quot;Subversion repository&quot;</span>
+    <span class="nx">AuthUserFile</span> <span class="p">/</span><span class="nx">etc</span><span class="p">/</span><span class="nx">subversion</span><span class="p">/</span><span class="nx">passwd</span>
+
+    <span class="err">#禁止匿名访问</span>
+    <span class="k">Require</span> <span class="n">valid</span><span class="na">-user</span>
+
+<span class="o">&lt;/</span><span class="nx">Location</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>创建认证用户：</p>
+<div class="highlight"><pre><span class="cp"># first user</span>
+<span class="n">sudo</span> <span class="n">htpasswd</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">subversion</span><span class="o">/</span><span class="n">passwd</span> <span class="n">user_name</span>
+<span class="cp"># second user</span>
+<span class="n">sudo</span> <span class="n">htpasswd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">subversion</span><span class="o">/</span><span class="n">passwd</span> <span class="n">second_user_name</span>
+</pre></div>
+
+
+<p>之后重启apache2就可以了，接下来就是配置nginx转发啦~</p>
+<h3>安装WebSVN</h3>
+<p>首先下载最新版本的<code>WebSVN</code>(官网：<a href="http://www.websvn.info/download/">http://www.websvn.info/download/</a>)</p>
+<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//websvn.tigris.org/files/documents/1380/49056/websvn-2.3.3.tar.gz</span>
+</pre></div>
+
+
+<p>解压后放到nginx的 <code>wwwroot</code>目录下，并配置nginx （这里就略去了~..）</p>
+<p>之后，需修改配置文件：</p>
+<div class="highlight"><pre><span class="n">cp</span> <span class="o">~/</span><span class="n">websvn</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">distconfig</span><span class="p">.</span><span class="n">php</span> <span class="o">~/</span><span class="n">websvn</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">config</span><span class="p">.</span><span class="n">php</span>
+
+<span class="n">vim</span> <span class="o">~/</span><span class="n">websvn</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">config</span><span class="p">.</span><span class="n">php</span>
+
+<span class="err">$</span><span class="n">config</span><span class="o">-&gt;</span><span class="n">addRepositorySubpath</span><span class="p">(</span><span class="err">&#39;</span><span class="n">myproject</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">file</span><span class="o">:</span><span class="c1">///home/../myproject&#39;, &#39;myproject&#39;);</span>
+</pre></div>
+
+
+<p>在nginx中增加访问控制：</p>
+<div class="highlight"><pre> <span class="n">auth_basic</span> <span class="s">&quot;Restricted&quot;</span><span class="p">;</span>
+ <span class="n">auth_basic_user_file</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">subversion</span><span class="o">/</span><span class="n">passwd</span><span class="p">;</span>
+</pre></div>
+
+
+<h2>结语</h2>
+<p>嗯，到这里，整个安装配置过程就算结束了~还算比较辛苦吧~O(∩_∩)O~</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/svn.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+                <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/tech.html">Tech</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="https://www.google.com/ncr">Google</a></li>
+                <li><a href="http://python.org/">Python</a></li>
+                <li><a href="http://docs.getpelican.com/">Pelican</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/brantxiong">Github</a></li>
+                <li><a href="https://bitbucket.org/XiongBo">Bitbucket</a></li>
+                <li><a href="https://plus.google.com/+BrantXiong">Google+</a></li>
+                <li><a href="https://www.quora.com/Brant-Xiong">Quora</a></li>
+                <li><a href="http://stackoverflow.com/users/2670671/alexbob">Stackoverflow</a></li>
+                <li><a href="https://twitter.com/BrantXiong">Twitter</a></li>
+                <li><a href="https://www.facebook.com/hustxiongbo">Facebook</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=207940847">Linkedin</a></li>
+                <li><a href="http://www.renren.com/432432772">人人</a></li>
+                <li><a href="http://weibo.com/1842032257">微博</a></li>
+                <li><a href="http://www.zhihu.com/people/xiong-bo-6">知乎</a></li>
+                <li><a href="http://www.douban.com/people/66459977">豆瓣</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+ 
+</body>
+</html>

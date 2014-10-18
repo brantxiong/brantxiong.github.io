@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Brant Xiong's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brant Xiong">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Brant Xiong's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2014/02/23/djangoxia-celeryde-shi-yong.html"><h1>django下celery的使用</h1></a>
+2014-02-23
+
+by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h2>前言</h2>
+<p>今天在使用django做后台的时候，遇到了这样的问题：django在处理用户请求的时候，需要进行一个耗时较长的异步抓取操作，同时希望能立即给用户返回数据，使用常规的daemon进程的方式没有解决该问题，用力Google了一下发现如下<a href="http://stackoverflow.com/questions/9495892/trigger-function-after-returning-httpresponse-from-django-view">解答</a>：</p>
+<blockquote>
+<p>In fact Django have a syncronous model. If you want to do real async processing, you need a message queue. The most used with django is celery, it may look a bit "overkill" but it's a good answer.</p>
+<p>Why do we need this? because in a wsgi app, apache give the request to the executable, and, the executable returns text. It's only once when the executable finish his execution that apache aknowledge the end of the request.</p>
+</blockquote>
+<h2>celery安装</h2>
+<p>官网：<a href="http://www.celeryproject.org/">http://www.celeryproject.org/</a>，celery利用python编写，实现了分布式的消息队列。安装如下：</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">celery</span>
+</pre></div>
+
+
+<p>此外，celery需要方案来实现发送和接收消息，通常通过一种<code>message broker</code>的独立服务来完成，我们安装官方推荐的<a href="http://www.rabbitmq.com/">RabbitMQ</a></p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">rabbitmq</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<h2>celery介绍</h2>
+<p>首先，我们需要创建一个celery的实例，编写文件<code>tasks.py</code></p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">celery</span> <span class="n">import</span> <span class="n">Celery</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="err">&#39;</span><span class="n">tasks</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">broker</span><span class="o">=</span><span class="err">&#39;</span><span class="n">amqp</span><span class="o">:</span><span class="c1">//guest@localhost//&#39;)</span>
+
+<span class="err">@</span><span class="n">app</span><span class="p">.</span><span class="n">task</span>
+    <span class="n">def</span> <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+
+
+<p>第一个参数<code>tasks</code>是当前模块的名称，第二个参数指定了所使用的<code>message broker</code>的URL，上使用的是<code>RabbitMQ</code>默认URL</p>
+<h3>启动celery work进程</h3>
+<div class="highlight"><pre><span class="n">celery</span> <span class="o">-</span><span class="n">A</span> <span class="n">tasks</span> <span class="n">worker</span> <span class="o">--</span><span class="n">loglevel</span><span class="o">=</span><span class="n">info</span>
+<span class="cp">#帮助</span>
+<span class="n">celery</span> <span class="n">worker</span> <span class="o">--</span><span class="n">help</span>
+<span class="n">celery</span> <span class="n">help</span>
+</pre></div>
+
+
+<h3>调用task</h3>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">tasks</span> <span class="n">import</span> <span class="n">add</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span><span class="p">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>celery在django的使用</h2>
+<p>整体框架如下：</p>
+<div class="highlight"><pre>      <span class="o">*--------*</span>                     <span class="o">+----------+</span>
+      <span class="o">|</span>        <span class="o">|</span>                     <span class="o">|</span>          <span class="o">|</span>
+      <span class="o">|</span> Django <span class="o">&gt;---</span> Enqueue tasks <span class="o">---&gt;</span> RabbitMQ <span class="o">&gt;-----</span>.
+      <span class="o">|</span>        <span class="o">|</span>                     <span class="o">|</span> <span class="p">(</span>Broker<span class="p">)</span> <span class="o">|</span>     <span class="o">|</span>
+      <span class="o">*---</span>v<span class="o">----*</span>                     <span class="o">+----------+</span>     <span class="o">|</span>
+          <span class="o">|</span>                                           <span class="o">|</span>
+          <span class="o">|</span> Query                    <span class="o">*----------*</span>     <span class="o">|</span>
+          <span class="o">|</span>                          <span class="o">|</span>  Celery  <span class="o">&lt;-----+</span>
+        <span class="o">+-</span>v<span class="o">----------+</span>  .<span class="o">--</span> Events <span class="o">--&lt;</span>  Worker  <span class="o">|</span>     <span class="o">|</span>
+        <span class="o">|</span>            <span class="o">|</span> <span class="o">/</span>             <span class="o">*----------*</span>     <span class="o">|</span> Consume
+        <span class="o">|</span> PostgreSQL <span class="o">&lt;=</span>                               <span class="o">|</span> <span class="o">&amp;</span> Run Tasks
+        <span class="o">|</span>            <span class="o">|</span> \             <span class="o">*----------*</span>     <span class="o">|</span>
+        <span class="o">+------------+</span>  `<span class="o">--</span> Events <span class="o">--&lt;</span>  Celery  <span class="o">|</span>     <span class="o">|</span>
+                                     <span class="o">|</span>  Worker  <span class="o">&lt;-----</span><span class="s">&#39;</span>
+                                     <span class="o">*----------*</span>
+</pre></div>
+
+
+<p>官方教程已经足够详细了~在此就不在累述了~ ;-)，请戳：<a href="http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html">http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html</a></p>
+<h2>附：supervise介绍</h2>
+<p>嗯，插入supervise的介绍~方便之后在后台运行celery实例。因为我厂大规模使用supervise管理服务程序，所以，有必要好好了解一下了~</p>
+<p>supervise是开源工具集<a href="http://cr.yp.to/daemontools.html">daemontools</a>其中的一个工具</p>
+<h3>工作原理</h3>
+<p>supervise启动的时候fork一个子进程,子进程执行execvp系统调用,将自己替换成执行的模块,
+模块变成supervise的子进程在运行,而supervise则死循环运行,并通过waitpid或者wait3系统调用选择非阻塞的方式去侦听子进程的运行情况,</p>
+<p>当然同时也会读取pipe文件svcontrol的命令,然后根据命令去执行不同的动作,
+如果子进程因某种原因导致退出,则supervise通过waitpid或者wait3获知,并继续启动模块,如果模块异常导致无法启动,则会使supervise陷入死循环,不断的启动模块。</p>
+<h3>安装</h3>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">daemontools</span>
+</pre></div>
+
+
+<h3>用法</h3>
+<div class="highlight"><pre><span class="cp">#supervise 目录名</span>
+<span class="n">supervise</span> <span class="n">s</span>
+</pre></div>
+
+
+<p>supervise switches to the directory named <code>s</code> and starts <code>./run</code>. It restarts <code>./run</code> if <code>./run</code> exits. It pauses for a second after starting <code>./run</code>, so that it does not loop too quickly if <code>./run</code> exits immediately.</p>
+<p>If the file <code>s/down</code> exists, supervise does not start <code>./run</code> immediately. You can use <code>svc</code> to start <code>./run</code> and to give other commands to supervise.</p>
+<p>supervise maintains status information in a binary format inside the directory <code>s/supervise</code>, which must be writable to supervise. The status information can be read by svstat.</p>
+<p>supervise may exit immediately after startup if it cannot find the files it needs in <code>s</code> or if another copy of supervise is already running in <code>s</code>. Once supervise is successfully running, it will not exit unless it is killed or specifically asked to exit. You can use <code>svok</code> to check whether supervise is successfully running. You can use <code>svscan</code> to reliably start a collection of supervise processes.</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/celery.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+                <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/tech.html">Tech</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="https://www.google.com/ncr">Google</a></li>
+                <li><a href="http://python.org/">Python</a></li>
+                <li><a href="http://docs.getpelican.com/">Pelican</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/brantxiong">Github</a></li>
+                <li><a href="https://bitbucket.org/XiongBo">Bitbucket</a></li>
+                <li><a href="https://plus.google.com/+BrantXiong">Google+</a></li>
+                <li><a href="https://www.quora.com/Brant-Xiong">Quora</a></li>
+                <li><a href="http://stackoverflow.com/users/2670671/alexbob">Stackoverflow</a></li>
+                <li><a href="https://twitter.com/BrantXiong">Twitter</a></li>
+                <li><a href="https://www.facebook.com/hustxiongbo">Facebook</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=207940847">Linkedin</a></li>
+                <li><a href="http://www.renren.com/432432772">人人</a></li>
+                <li><a href="http://weibo.com/1842032257">微博</a></li>
+                <li><a href="http://www.zhihu.com/people/xiong-bo-6">知乎</a></li>
+                <li><a href="http://www.douban.com/people/66459977">豆瓣</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+ 
+</body>
+</html>
