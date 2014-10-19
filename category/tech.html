@@ -80,24 +80,27 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 
 
 <p>配置如下：    </p>
-<p>[Desktop Entry]
-    Version=1.0
-    Type=Application
-    Name=Eclipse-adt
-    Comment=Eclipse ADT Bundle
-    Icon=/home/brant/Development/Android/adt-bundle/eclipse/icon.xpm
-    Exec=/home/brant/Development/Android/adt-bundle/eclipse/eclipse
-    Path=
-    Terminal=false
-    StartupNotify=true
-    Categories=Development;IDE</p>
+<div class="highlight"><pre><span class="k">[Desktop Entry]</span>
+<span class="na">Version</span><span class="o">=</span><span class="s">1.0</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Application</span>
+<span class="na">Name</span><span class="o">=</span><span class="s">Eclipse-adt</span>
+<span class="na">Comment</span><span class="o">=</span><span class="s">Eclipse ADT Bundle</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">/home/brant/Development/Android/adt-bundle/eclipse/icon.xpm</span>
+<span class="na">Exec</span><span class="o">=</span><span class="s">/home/brant/Development/Android/adt-bundle/eclipse/eclipse</span>
+<span class="na">Path</span><span class="o">=</span>
+<span class="na">Terminal</span><span class="o">=</span><span class="s">false</span>
+<span class="na">StartupNotify</span><span class="o">=</span><span class="s">true</span>
+<span class="na">Categories</span><span class="o">=</span><span class="s">Development;IDE</span>
+</pre></div>
+
+
 <h3>2.github ssh提交</h3>
 <p>参考<a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
 <div class="highlight"><pre><span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
 
 
-<h4>3.S权限介绍</h4>
+<h3>3.S权限介绍</h3>
 <p>引用如下：</p>
 <div class="highlight"><pre><span class="sc">&#39;S&#39;</span> <span class="o">=</span> <span class="n">The</span> <span class="n">directory</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">setgid</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">execute</span> <span class="n">bit</span> <span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">set</span><span class="p">.</span>
 
@@ -108,15 +111,12 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <p>SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.</p>
 <p>To remove the setGID bit:</p>
 <div class="highlight"><pre><span class="n">chmod</span> <span class="n">g</span><span class="o">-</span><span class="n">s</span> <span class="n">eclipse</span><span class="o">/</span>
+<span class="n">Taken</span> <span class="n">from</span> <span class="n">man</span> <span class="n">chmod</span><span class="o">:</span>
 </pre></div>
 
 
-<p>Taken from man chmod:</p>
 <p>You can set or clear the bits with symbolic modes like u+s and g-s, and you can set (but not clear) the bits with a numeric mode.</p>
-<p>link to a similar question: <a href="http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder">http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder</a></p>
-<h4>4.其他</h4>
-<h5>genymotion启动找不到vbox</h5>
-<p>You should get the message "VirtualBox kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) are loaded". If not, force VirtualBox kernel modules compilation by running sudo /etc/init.d/vboxdrv setup. Make also sure that you are part of the vboxusers group. If not, run sudo usermod -a -G vboxusers <login>.</p></div>
+<p>link to a similar question: <a href="http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder">http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder</a></p></div>
         <hr />
     </div>
 		
