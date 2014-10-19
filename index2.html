@@ -57,6 +57,44 @@
  
 
     <div class='article'>
+        <a href="./pages/2014/02/19/python_ana_url.html"><h2>记一次捉急的文本处理</h2></a>
+        <div class= "well small"> 2014-02-19
+
+by <a class="url fn" href="./author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>前言</h2>
+<p>今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考</p>
+<h2>异常文件处理</h2>
+<p>删除文件最后的异常行：</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">file</span> <span class="n">in</span> <span class="err">`</span><span class="n">ls</span><span class="err">`</span><span class="p">;</span> <span class="k">do</span> <span class="n">line</span><span class="o">=</span><span class="err">`</span><span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="err">$</span><span class="n">file</span><span class="err">`</span><span class="p">;</span> <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$line&quot;</span> <span class="o">!=</span> <span class="s">&quot;},&quot;</span> <span class="p">];</span> <span class="n">then</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="err">&#39;$</span><span class="n">d</span><span class="err">&#39;</span> <span class="err">$</span><span class="n">file</span><span class="p">;</span><span class="n">fi</span><span class="p">;</span><span class="n">done</span>
+</pre></div>
+
+
+<p>删除目录下的空文件：</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="o">-</span><span class="n">maxdepth</span> <span class="mi">1</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">print0</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="mi">0</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+
+
+<h2>python处理url</h2>
+<p>从url中获取domain name:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin ...</span></pre></div></td></tr></table> <a class="btn btn-info xsmall" href="./pages/2014/02/19/python_ana_url.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./pages/2014/02/18/tcpdump.html"><h2>tcpdump用法简介</h2></a>
         <div class= "well small"> 2014-02-18
 
@@ -213,47 +251,15 @@ by <a class="url fn" href="./author/brant-xiong.html">Brant Xiong</a>
 <div class="highlight"><pre>   <span class="n">sudo ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2014/02/17/vps_1.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2014/02/16/build_blog.html"><h2>利用github搭建个人博客</h2></a>
-        <div class= "well small"> 2014-02-16
-
-by <a class="url fn" href="./author/brant-xiong.html">Brant Xiong</a>
- 
-
-
- </div>
-        <div class="summary"><h2>前言</h2>
-<p>首先，感谢<a href="http://www.lizherui.com/">lizherui大牛</a>博客中的<a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">教程</a>。
-引用下原文对Geek的理解：</p>
-<blockquote>
-<p>Geek更多的是一种精神，一种态度，一种对技术的理解与信念。他们无法忍受丑陋的代码，拙劣的技术。他们思路开阔，技术娴熟，他们不甘平庸，追求完美。他们不会囿于常识，他们敢于突破。在常人眼中，他们不走寻常路，享受各种非主流的技术。但在他们自己眼中，这些又是那么得自然与优美。他们用自己的行为诠释着自己对于技术的理解，用那份固执传达着自己的信念。</p>
-<p>他们掌握并热爱着技术，叛逆、执着，崇尚自由。</p>
-</blockquote>
-<p>本人非常崇尚这种Geek风格，并努力成为Geek中的一员~</p>
-<p>下面记录下本博客搭建的整个过程~</p>
-<h2>博客搭建过程</h2>
-<hr />
-<p>开始动手。</p>
-<h3>Github入门指南</h3>
-<p>请参考<a href="http://blog.csdn.net/duxinfeng2010/article/details/8654690">http://blog.csdn.net/duxinfeng2010/article/details/8654690</a></p>
-<h3>使用Github Pages创建个人博客</h3>
-<p>Github为每一个用户分配了一个二级域名<code>username.github.io ...</code></p> <a class="btn btn-info xsmall" href="./pages/2014/02/16/build_blog.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="./index.html">&larr; Previous</a></li>
 
     <li class=""><a href="./index.html">1</a></li>
     <li class="active"><a href="./index2.html">2</a></li>
+    <li class=""><a href="./index3.html">3</a></li>
 
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+    <li class="next"><a href="./index3.html">Next &rarr;</a></li>
 
 </ul>
 </div>

@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://brantxiong.github.io/index.html</loc>
-<lastmod>2014-10-19T01:31:56-00:00</lastmod>
+<lastmod>2014-10-19T16:45:03-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/archives.html</loc>
-<lastmod>2014-10-19T01:31:56-00:00</lastmod>
+<lastmod>2014-10-19T16:45:03-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tags.html</loc>
-<lastmod>2014-10-19T01:31:56-00:00</lastmod>
+<lastmod>2014-10-19T16:45:03-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/categories.html</loc>
-<lastmod>2014-10-19T01:31:56-00:00</lastmod>
+<lastmod>2014-10-19T16:45:03-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2014-02-16T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://brantxiong.github.io/pages/2014/10/19/xubuntushi-yong-zhi-lu.html</loc>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -110,7 +117,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://brantxiong.github.io/category/tech.html</loc>
-<lastmod>2014-03-11T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://brantxiong.github.io/tag/ubuntu.html</loc>
-<lastmod>2014-03-04T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -228,8 +235,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://brantxiong.github.io/tag/xubuntu.html</loc>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://brantxiong.github.io/tag/linux.html</loc>
-<lastmod>2014-03-11T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -257,7 +271,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://brantxiong.github.io/author/brant-xiong.html</loc>
-<lastmod>2014-03-11T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

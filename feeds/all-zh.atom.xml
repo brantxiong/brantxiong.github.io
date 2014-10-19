@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Brant Xiong's Blog</title><link href="http://brantxiong.github.io/" rel="alternate"></link><link href="http://brantxiong.github.io/feeds/all-zh.atom.xml" rel="self"></link><id>http://brantxiong.github.io/</id><updated>2014-03-11T00:00:00+08:00</updated><entry><title>Raid 1+0 操作步骤记录</title><link href="http://brantxiong.github.io/pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html" rel="alternate"></link><updated>2014-03-11T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-03-11:pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html</id><summary type="html">&lt;h3&gt;操作结果&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Brant Xiong's Blog</title><link href="http://brantxiong.github.io/" rel="alternate"></link><link href="http://brantxiong.github.io/feeds/all-zh.atom.xml" rel="self"></link><id>http://brantxiong.github.io/</id><updated>2014-10-19T00:00:00+08:00</updated><entry><title>xubuntu使用之旅</title><link href="http://brantxiong.github.io/pages/2014/10/19/xubuntushi-yong-zhi-lu.html" rel="alternate"></link><updated>2014-10-19T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-10-19:pages/2014/10/19/xubuntushi-yong-zhi-lu.html</id><summary type="html">&lt;h3&gt;写在前面&lt;/h3&gt;
+&lt;p&gt;最近给自己的本子换了新的ssd，也趁此机会重装了系统。本次选的的系统是xubuntu 14.04。&lt;/p&gt;
+&lt;p&gt;嗯，目前来看，这货比ubuntu快的多，用着很爽～&lt;/p&gt;
+&lt;p&gt;下面将新系统配置当中遇到的一些问题和技巧做个记录，也方便以后查询～&lt;/p&gt;
+&lt;h3&gt;1.将程序添加到开始菜单&lt;/h3&gt;
+&lt;p&gt;由于需要配置android开发环境，很自然的就装了&lt;code&gt;Eclispe-adt&lt;/code&gt;，装完后，没有开始菜单启动项，感觉不太方便。&lt;/p&gt;
+&lt;p&gt;Google之后，发现将程序添加到开始菜单中其实非常简单。&lt;/p&gt;
+&lt;p&gt;编辑文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;applications&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Eclipse&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;desktopktop&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;配置如下：    &lt;/p&gt;
+&lt;p&gt;[Desktop Entry]
+    Version=1.0
+    Type=Application
+    Name=Eclipse-adt
+    Comment=Eclipse ADT Bundle
+    Icon=/home/brant/Development/Android/adt-bundle/eclipse/icon.xpm
+    Exec=/home/brant/Development/Android/adt-bundle/eclipse/eclipse
+    Path=
+    Terminal=false
+    StartupNotify=true
+    Categories=Development;IDE&lt;/p&gt;
+&lt;h3&gt;2.github ssh提交&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href="https://help.github.com/articles/generating-ssh-keys/"&gt;https://help.github.com/articles/generating-ssh-keys/&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;3.S权限介绍&lt;/h4&gt;
+&lt;p&gt;引用如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sc"&gt;&amp;#39;S&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;setgid&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;execute&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;isn&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="sc"&gt;&amp;#39;s&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;setgid&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;execute&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.&lt;/p&gt;
+&lt;p&gt;To remove the setGID bit:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;eclipse&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Taken from man chmod:&lt;/p&gt;
+&lt;p&gt;You can set or clear the bits with symbolic modes like u+s and g-s, and you can set (but not clear) the bits with a numeric mode.&lt;/p&gt;
+&lt;p&gt;link to a similar question: &lt;a href="http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder"&gt;http://unix.stackexchange.com/questions/27250/uppercase-s-in-permissions-of-a-folder&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;4.其他&lt;/h4&gt;
+&lt;h5&gt;genymotion启动找不到vbox&lt;/h5&gt;
+&lt;p&gt;You should get the message "VirtualBox kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) are loaded". If not, force VirtualBox kernel modules compilation by running sudo /etc/init.d/vboxdrv setup. Make also sure that you are part of the vboxusers group. If not, run sudo usermod -a -G vboxusers &lt;login&gt;.&lt;/p&gt;</summary><category term="linux"></category><category term="ubuntu"></category><category term="xubuntu"></category></entry><entry><title>Raid 1+0 操作步骤记录</title><link href="http://brantxiong.github.io/pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html" rel="alternate"></link><updated>2014-03-11T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-03-11:pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html</id><summary type="html">&lt;h3&gt;操作结果&lt;/h3&gt;
 &lt;p&gt;所有机器磁盘挂载情况如下：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;
 &lt;span class="n"&gt;Filesystem&lt;/span&gt;            &lt;span class="n"&gt;Size&lt;/span&gt;  &lt;span class="n"&gt;Used&lt;/span&gt; &lt;span class="n"&gt;Avail&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;Mounted&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;

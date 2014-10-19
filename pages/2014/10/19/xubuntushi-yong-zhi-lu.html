@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="../theme/html5.js"></script>
+    <script src="../../../../theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../theme/local.css" rel="stylesheet">
-    <link href="../theme/pygments.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -32,12 +32,12 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href="..">Brant Xiong's Blog</a>
+        <a class="brand" href="../../../..">Brant Xiong's Blog</a>
 
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="../pages/about.html">About</a></li>
+            <li><a href="../../../../pages/about.html">About</a></li>
         </ul>
         </div>
         
@@ -50,23 +50,17 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2014/10/19/xubuntushi-yong-zhi-lu.html"><h1>xubuntu使用之旅</h1></a>
+            <h1>xubuntu使用之旅</h1>
 2014-10-19
 
-by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
+by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
  
 
 
- 
         </div>
-        
+	
         <div><h3>写在前面</h3>
 <p>最近给自己的本子换了新的ssd，也趁此机会重装了系统。本次选的的系统是xubuntu 14.04。</p>
 <p>嗯，目前来看，这货比ubuntu快的多，用着很爽～</p>
@@ -117,53 +111,23 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <h4>4.其他</h4>
 <h5>genymotion启动找不到vbox</h5>
 <p>You should get the message "VirtualBox kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) are loaded". If not, force VirtualBox kernel modules compilation by running sudo /etc/init.d/vboxdrv setup. Make also sure that you are part of the vboxusers group. If not, run sudo usermod -a -G vboxusers <login>.</p></div>
-        <hr />
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'BrantXiong'; 
+    var disqus_title = 'xubuntu使用之旅';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2014/03/04/ubuntuxia-da-jian-web-svn.html"><h2>ubuntu下搭建web svn</h2></a>
-        <div class= "well small"> 2014-03-04
-
-by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
- 
-
-
- </div>
-        <div class="summary"><h2>前言</h2>
-<p>嗯，为了方便开发，需在VPS（环境为ubuntu 12.04）搭建svn服务。本文主要记录下搭建的整体步骤~</p>
-<h2>步骤</h2>
-<h3>安装svn</h3>
-<p>过程主要参考：<a href="https://help.ubuntu.com/community/Subversion">https://help.ubuntu.com/community/Subversion</a></p>
-<p>首先安装subversion </p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">subversion</span> <span class="n">subversion</span><span class="o">-</span><span class="n">tools</span>
-</pre></div>
-
-
-<p>安装完成后，需建立<code>subversion</code>用户组来拥有资源目录，然后将nginx的用户添加到该用户组（假设nginx的配置为<code>user  www-data;</code>）,具体操作如下：</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">groupadd</span> <span class="n">subversion</span>
-<span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="n">subversion</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span>
-<span class="cp">#验证</span>
-<span class="n">sudo</span> <span class="n">groups</span> <span class="n">www</span><span class="o">-</span><span class="n">data ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2014/03/04/ubuntuxia-da-jian-web-svn.html">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../tag/ubuntu.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">
@@ -174,8 +138,8 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
                 Site
                 </li>
             
-                <li><a href="../archives.html">Archives</a>
-                <li><a href="../tags.html">Tags</a>
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
                 <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
             </ul>
@@ -188,7 +152,7 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
                 Categories
                 </li>
                 
-                <li><a href="../category/tech.html">Tech</a></li>
+                <li><a href="../../../../category/tech.html">Tech</a></li>
                    
             </ul>
             </div>
@@ -234,7 +198,7 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
 </footer>
 
 </div> <!-- /container -->
