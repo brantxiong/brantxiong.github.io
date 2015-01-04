@@ -165,6 +165,44 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
  
 
     <div class='article'>
+        <a href="../pages/2014/02/19/python_ana_url.html"><h2>记一次捉急的文本处理</h2></a>
+        <div class= "well small"> 2014-02-19
+
+by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>前言</h2>
+<p>今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考</p>
+<h2>异常文件处理</h2>
+<p>删除文件最后的异常行：</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">file</span> <span class="n">in</span> <span class="err">`</span><span class="n">ls</span><span class="err">`</span><span class="p">;</span> <span class="k">do</span> <span class="n">line</span><span class="o">=</span><span class="err">`</span><span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="err">$</span><span class="n">file</span><span class="err">`</span><span class="p">;</span> <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$line&quot;</span> <span class="o">!=</span> <span class="s">&quot;},&quot;</span> <span class="p">];</span> <span class="n">then</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="err">&#39;$</span><span class="n">d</span><span class="err">&#39;</span> <span class="err">$</span><span class="n">file</span><span class="p">;</span><span class="n">fi</span><span class="p">;</span><span class="n">done</span>
+</pre></div>
+
+
+<p>删除目录下的空文件：</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="o">-</span><span class="n">maxdepth</span> <span class="mi">1</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">print0</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="mi">0</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+
+
+<h2>python处理url</h2>
+<p>从url中获取domain name:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin ...</span></pre></div></td></tr></table> <a class="btn btn-info xsmall" href="../pages/2014/02/19/python_ana_url.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2014/02/16/build_blog.html"><h2>利用github搭建个人博客</h2></a>
         <div class= "well small"> 2014-02-16
 

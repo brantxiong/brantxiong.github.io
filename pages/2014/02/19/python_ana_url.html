@@ -118,11 +118,11 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
          <span class="k">try</span><span class="p">:</span>
              <span class="n">query_url</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">)</span>
          <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
-             <span class="k">return</span> <span class="s">&quot;Unkown Encoding&quot;</span>
+             <span class="k">return</span> <span class="s">&quot;Unknown Encoding&quot;</span>
     <span class="k">try</span><span class="p">:</span>
          <span class="n">wd</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">urlparse</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">)[</span><span class="s">&#39;wd&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
      <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-         <span class="n">wd</span> <span class="o">=</span> <span class="s">&quot;Unkown Key&quot;</span>
+         <span class="n">wd</span> <span class="o">=</span> <span class="s">&quot;Unknown Key&quot;</span>
     <span class="k">return</span> <span class="n">wd</span>
 </pre></div>
 </td></tr></table>
@@ -148,7 +148,7 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 
 
 <h2>总结</h2>
-<p>python的数据结构还需要系统的看下，不然好多基础问题还得Goolge..太影响效率了。囧ｏ（╯□╰）ｏ．．</p>
+<p>python的数据结构还需要系统的看下，不然好多基础问题还得Google..太影响效率了。囧ｏ（╯□╰）ｏ．．</p>
 <p>嗯，准备系统的看下官方文档：<a href="http://docs.python.org/2/tutorial/index.html">http://docs.python.org/2/tutorial/index.html</a>.嗯，之前<a href="http://blog.felixc.at/">喵大</a>说要看的..．喵的，还没看完！最近抽时间看完！</p></div>
 	
         <hr>

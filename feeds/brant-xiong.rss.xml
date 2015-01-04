@@ -398,11 +398,11 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
          &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
              &lt;span class="n"&gt;query_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unquote&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gbk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
          &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;UnicodeDecodeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Unkown Encoding&amp;quot;&lt;/span&gt;
+             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Unknown Encoding&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
          &lt;span class="n"&gt;wd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parse_qs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;urlparse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;wd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
      &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;KeyError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-         &lt;span class="n"&gt;wd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Unkown Key&amp;quot;&lt;/span&gt;
+         &lt;span class="n"&gt;wd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Unknown Key&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wd&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -428,8 +428,8 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 
 
 &lt;h2&gt;总结&lt;/h2&gt;
-&lt;p&gt;python的数据结构还需要系统的看下，不然好多基础问题还得Goolge..太影响效率了。囧ｏ（╯□╰）ｏ．．&lt;/p&gt;
-&lt;p&gt;嗯，准备系统的看下官方文档：&lt;a href="http://docs.python.org/2/tutorial/index.html"&gt;http://docs.python.org/2/tutorial/index.html&lt;/a&gt;.嗯，之前&lt;a href="http://blog.felixc.at/"&gt;喵大&lt;/a&gt;说要看的..．喵的，还没看完！最近抽时间看完！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Brant Xiong</dc:creator><pubDate>Wed, 19 Feb 2014 00:00:00 +0800</pubDate><guid>tag:brantxiong.github.io,2014-02-19:pages/2014/02/19/python_ana_url.html</guid><category>linux</category><category>pyhon</category><category>sed</category></item><item><title>tcpdump用法简介</title><link>http://brantxiong.github.io/pages/2014/02/18/tcpdump.html</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;python的数据结构还需要系统的看下，不然好多基础问题还得Google..太影响效率了。囧ｏ（╯□╰）ｏ．．&lt;/p&gt;
+&lt;p&gt;嗯，准备系统的看下官方文档：&lt;a href="http://docs.python.org/2/tutorial/index.html"&gt;http://docs.python.org/2/tutorial/index.html&lt;/a&gt;.嗯，之前&lt;a href="http://blog.felixc.at/"&gt;喵大&lt;/a&gt;说要看的..．喵的，还没看完！最近抽时间看完！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Brant Xiong</dc:creator><pubDate>Wed, 19 Feb 2014 00:00:00 +0800</pubDate><guid>tag:brantxiong.github.io,2014-02-19:pages/2014/02/19/python_ana_url.html</guid><category>linux</category><category>python</category><category>sed</category></item><item><title>tcpdump用法简介</title><link>http://brantxiong.github.io/pages/2014/02/18/tcpdump.html</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;今天在追查问题时，需要转包分析，用到了tcpdump工具，下面做下记录~&lt;/p&gt;
 &lt;h3&gt;基本用法&lt;/h3&gt;
 &lt;p&gt;tcpdump 采用命令行方式，需以root权限运行，它的命令格式为：&lt;/p&gt;
