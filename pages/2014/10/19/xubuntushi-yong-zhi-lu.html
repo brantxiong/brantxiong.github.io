@@ -18,6 +18,10 @@
     <link href="../../../../theme/local.css" rel="stylesheet">
     <link href="../../../../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -69,7 +73,7 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <p>由于需要配置android开发环境，很自然的就装了<code>Eclispe-adt</code>，装完后，没有开始菜单启动项，感觉不太方便。</p>
 <p>Google之后，发现将程序添加到开始菜单中其实非常简单。</p>
 <p>编辑文件：</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">Eclipse</span><span class="o">-</span><span class="n">adt</span><span class="p">.</span><span class="n">desktopktop</span>
+<div class="highlight"><pre>sudo vim /usr/share/applications/Eclipse-adt.desktopktop
 </pre></div>
 
 
@@ -90,22 +94,22 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 
 <h3>2.github ssh提交</h3>
 <p>参考<a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="p">.</span><span class="n">git</span>
+<div class="highlight"><pre>git remote set-url origin git@github.com:username/repo.git
 </pre></div>
 
 
 <h3>3.S权限介绍</h3>
 <p>引用如下：</p>
-<div class="highlight"><pre><span class="sc">&#39;S&#39;</span> <span class="o">=</span> <span class="n">The</span> <span class="n">directory</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">setgid</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">execute</span> <span class="n">bit</span> <span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">set</span><span class="p">.</span>
+<div class="highlight"><pre>&#39;S&#39; = The directory&#39;s setgid bit is set, but the execute bit isn&#39;t set.
 
-<span class="sc">&#39;s&#39;</span> <span class="o">=</span> <span class="n">The</span> <span class="n">directory</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">setgid</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">,</span> <span class="n">and</span> <span class="n">the</span> <span class="n">execute</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">.</span>
+&#39;s&#39; = The directory&#39;s setgid bit is set, and the execute bit is set.
 </pre></div>
 
 
 <p>SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.</p>
 <p>To remove the setGID bit:</p>
-<div class="highlight"><pre><span class="n">chmod</span> <span class="n">g</span><span class="o">-</span><span class="n">s</span> <span class="n">eclipse</span><span class="o">/</span>
-<span class="n">Taken</span> <span class="n">from</span> <span class="n">man</span> <span class="n">chmod</span><span class="o">:</span>
+<div class="highlight"><pre>chmod g-s eclipse/
+Taken from man chmod:
 </pre></div>
 
 
@@ -114,7 +118,7 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <h3>4.其他技巧</h3>
 <h4>修改eclispe tab-bar字体</h4>
 <p>修改文件：</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brant</span><span class="o">/</span><span class="n">Development</span><span class="o">/</span><span class="n">Android</span><span class="o">/</span><span class="n">adt</span><span class="o">-</span><span class="n">bundle</span><span class="o">/</span><span class="n">eclipse</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">platform_4</span><span class="mf">.2.2</span><span class="p">.</span><span class="n">v201302041200</span><span class="o">/</span><span class="n">css</span>
+<div class="highlight"><pre>/home/brant/Development/Android/adt-bundle/eclipse/plugins/org.eclipse.platform_4.2.2.v201302041200/css
 </pre></div></div>
 	
         <hr>
@@ -145,8 +149,12 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../../../../archives.html">Archives</a>
                 <li><a href="../../../../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -203,14 +211,14 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

@@ -18,6 +18,10 @@
     <link href="../../../../theme/local.css" rel="stylesheet">
     <link href="../../../../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -63,17 +67,17 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 	
         <div><h3>操作结果</h3>
 <p>所有机器磁盘挂载情况如下：</p>
-<div class="highlight"><pre><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">HOST</span> <span class="n">work</span><span class="p">]</span><span class="err">#</span> <span class="n">df</span> <span class="o">-</span><span class="n">h</span>
-<span class="n">Filesystem</span>            <span class="n">Size</span>  <span class="n">Used</span> <span class="n">Avail</span> <span class="n">Use</span><span class="o">%</span> <span class="n">Mounted</span> <span class="n">on</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>             <span class="mf">8.2</span><span class="n">G</span>  <span class="mf">3.8</span><span class="n">G</span>  <span class="mf">4.4</span><span class="n">G</span>  <span class="mi">47</span><span class="o">%</span> <span class="o">/</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span>             <span class="mf">1.8</span><span class="n">T</span>  <span class="mf">1.7</span><span class="n">G</span>  <span class="mf">1.8</span><span class="n">T</span>   <span class="mi">1</span><span class="o">%</span> <span class="o">/</span><span class="n">home</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md10</span>             <span class="mf">8.9</span><span class="n">T</span>  <span class="mi">168</span><span class="n">M</span>  <span class="mf">8.4</span><span class="n">T</span>   <span class="mi">1</span><span class="o">%</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data1</span>
+<div class="highlight"><pre>[root@HOST work]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2             8.2G  3.8G  4.4G  47% /
+/dev/sda3             1.8T  1.7G  1.8T   1% /home
+/dev/md10             8.9T  168M  8.4T   1% /home/data1
 </pre></div>
 
 
 <h4>1. unmount正在使用的盘</h4>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">1</span> <span class="mi">9</span><span class="err">`</span><span class="p">;</span><span class="k">do</span> <span class="n">umount</span> <span class="o">/</span><span class="n">disk</span><span class="err">$</span><span class="n">x</span><span class="p">;</span><span class="n">done</span>
-<span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">10</span> <span class="mi">11</span><span class="err">`</span><span class="p">;</span><span class="k">do</span> <span class="n">umount</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">disk</span><span class="err">$</span><span class="n">x</span><span class="p">;</span><span class="n">done</span>
+<div class="highlight"><pre><span class="x">for x in `seq 1 9`;do umount /disk</span><span class="p">$</span><span class="nv">x</span><span class="x">;done</span>
+<span class="x">for x in `seq 10 11`;do umount /home/disk</span><span class="p">$</span><span class="nv">x</span><span class="x">;done</span>
 </pre></div>
 
 
@@ -90,19 +94,19 @@ eval mdadm -Cv /dev/md<span class="nv">$i</span> -l 1 -n2 /dev/sd[<span class="c
 
 
 <h4>3. raid 0方式做成10T的大盘</h4>
-<div class="highlight"><pre><span class="n">mdadm</span> <span class="o">-</span><span class="n">Cv</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md10</span> <span class="o">-</span><span class="n">l</span> <span class="mi">0</span> <span class="o">-</span><span class="n">n5</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span>
-    <span class="n">y</span>
-<span class="n">EOF</span>
+<div class="highlight"><pre>mdadm -Cv /dev/md10 -l 0 -n5 /dev/md[0-4] &lt;&lt;EOF
+    y
+EOF
 </pre></div>
 
 
 <h4>4. 格式化md10为ext4</h4>
-<div class="highlight"><pre><span class="n">mkfs</span> <span class="o">-</span><span class="n">t</span> <span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md10</span>
+<div class="highlight"><pre>mkfs -t ext4 /dev/md10
 </pre></div>
 
 
 <h4>5. 挂载大盘到/home/data1</h4>
-<div class="highlight"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data1</span> <span class="o">&amp;&amp;</span> <span class="n">mount</span> <span class="o">-</span><span class="n">t</span> <span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md10</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data1</span><span class="o">/</span>
+<div class="highlight"><pre>mkdir /home/data1 &amp;&amp; mount -t ext4 /dev/md10 /home/data1/
 </pre></div></div>
 	
         <hr>
@@ -133,8 +137,12 @@ eval mdadm -Cv /dev/md<span class="nv">$i</span> -l 1 -n2 /dev/sd[<span class="c
             
                 <li><a href="../../../../archives.html">Archives</a>
                 <li><a href="../../../../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -191,14 +199,14 @@ eval mdadm -Cv /dev/md<span class="nv">$i</span> -l 1 -n2 /dev/sd[<span class="c
     </div>     </div> 
 <footer>
 <br />
-<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

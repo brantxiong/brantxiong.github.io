@@ -18,6 +18,10 @@
     <link href="../theme/local.css" rel="stylesheet">
     <link href="../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -75,7 +79,7 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <p>由于需要配置android开发环境，很自然的就装了<code>Eclispe-adt</code>，装完后，没有开始菜单启动项，感觉不太方便。</p>
 <p>Google之后，发现将程序添加到开始菜单中其实非常简单。</p>
 <p>编辑文件：</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">Eclipse</span><span class="o">-</span><span class="n">adt</span><span class="p">.</span><span class="n">desktopktop</span>
+<div class="highlight"><pre>sudo vim /usr/share/applications/Eclipse-adt.desktopktop
 </pre></div>
 
 
@@ -96,22 +100,22 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 
 <h3>2.github ssh提交</h3>
 <p>参考<a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="p">.</span><span class="n">git</span>
+<div class="highlight"><pre>git remote set-url origin git@github.com:username/repo.git
 </pre></div>
 
 
 <h3>3.S权限介绍</h3>
 <p>引用如下：</p>
-<div class="highlight"><pre><span class="sc">&#39;S&#39;</span> <span class="o">=</span> <span class="n">The</span> <span class="n">directory</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">setgid</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">execute</span> <span class="n">bit</span> <span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">set</span><span class="p">.</span>
+<div class="highlight"><pre>&#39;S&#39; = The directory&#39;s setgid bit is set, but the execute bit isn&#39;t set.
 
-<span class="sc">&#39;s&#39;</span> <span class="o">=</span> <span class="n">The</span> <span class="n">directory</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">setgid</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">,</span> <span class="n">and</span> <span class="n">the</span> <span class="n">execute</span> <span class="n">bit</span> <span class="n">is</span> <span class="n">set</span><span class="p">.</span>
+&#39;s&#39; = The directory&#39;s setgid bit is set, and the execute bit is set.
 </pre></div>
 
 
 <p>SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.</p>
 <p>To remove the setGID bit:</p>
-<div class="highlight"><pre><span class="n">chmod</span> <span class="n">g</span><span class="o">-</span><span class="n">s</span> <span class="n">eclipse</span><span class="o">/</span>
-<span class="n">Taken</span> <span class="n">from</span> <span class="n">man</span> <span class="n">chmod</span><span class="o">:</span>
+<div class="highlight"><pre>chmod g-s eclipse/
+Taken from man chmod:
 </pre></div>
 
 
@@ -120,7 +124,7 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <h3>4.其他技巧</h3>
 <h4>修改eclispe tab-bar字体</h4>
 <p>修改文件：</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brant</span><span class="o">/</span><span class="n">Development</span><span class="o">/</span><span class="n">Android</span><span class="o">/</span><span class="n">adt</span><span class="o">-</span><span class="n">bundle</span><span class="o">/</span><span class="n">eclipse</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">platform_4</span><span class="mf">.2.2</span><span class="p">.</span><span class="n">v201302041200</span><span class="o">/</span><span class="n">css</span>
+<div class="highlight"><pre>/home/brant/Development/Android/adt-bundle/eclipse/plugins/org.eclipse.platform_4.2.2.v201302041200/css
 </pre></div></div>
         <hr />
     </div>
@@ -142,11 +146,16 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
  </div>
         <div class="summary"><h3>操作结果</h3>
 <p>所有机器磁盘挂载情况如下：</p>
-<div class="highlight"><pre><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">HOST</span> <span class="n">work</span><span class="p">]</span><span class="err">#</span> <span class="n">df</span> <span class="o">-</span><span class="n">h</span>
-<span class="n">Filesystem</span>            <span class="n">Size</span>  <span class="n">Used</span> <span class="n">Avail</span> <span class="n">Use</span><span class="o">%</span> <span class="n">Mounted</span> <span class="n">on</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>             <span class="mf">8.2</span><span class="n">G</span>  <span class="mf">3.8</span><span class="n">G</span>  <span class="mf">4.4</span><span class="n">G</span>  <span class="mi">47</span><span class="o">%</span> <span class="o">/</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span>             <span class="mf">1.8</span><span class="n">T</span>  <span class="mf">1.7</span><span class="n">G</span>  <span class="mf">1.8</span><span class="n">T</span>   <span class="mi">1</span><span class="o">%</span> <span class="o">/</span><span class="n">home</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md10</span>             <span class="mf">8.9</span><span class="n">T</span>  <span class="mi">168</span><span class="n">M</span>  <span class="mf">8.4</span><span class="n">T</span>   <span class="mi">1 ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html">read more</a></div>
+<div class="highlight"><pre>[root@HOST work]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2             8.2G  3.8G  4.4G  47% /
+/dev/sda3             1.8T  1.7G  1.8T   1% /home
+/dev/md10             8.9T  168M  8.4T   1% /home/data1
+</pre></div>
+
+
+<h4>1. unmount正在使用的盘</h4>
+<div class="highlight"><pre><span class="x">for x in `seq 1 ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html">read more</a></div>
     </div>	
 				
 
@@ -168,12 +177,12 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <p>今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考</p>
 <h2>异常文件处理</h2>
 <p>删除文件最后的异常行：</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">file</span> <span class="n">in</span> <span class="err">`</span><span class="n">ls</span><span class="err">`</span><span class="p">;</span> <span class="k">do</span> <span class="n">line</span><span class="o">=</span><span class="err">`</span><span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="err">$</span><span class="n">file</span><span class="err">`</span><span class="p">;</span> <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$line&quot;</span> <span class="o">!=</span> <span class="s">&quot;},&quot;</span> <span class="p">];</span> <span class="n">then</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="err">&#39;$</span><span class="n">d</span><span class="err">&#39;</span> <span class="err">$</span><span class="n">file</span><span class="p">;</span><span class="n">fi</span><span class="p">;</span><span class="n">done</span>
+<div class="highlight"><pre><span class="x">for file in `ls`; do line=`tail -1 </span><span class="p">$</span><span class="nv">file</span><span class="x">`; if [ &quot;</span><span class="p">$</span><span class="nv">line</span><span class="x">&quot; != &quot;},&quot; ]; then sed -i &#39;</span><span class="p">$</span><span class="nv">d</span><span class="x">&#39; </span><span class="p">$</span><span class="nv">file</span><span class="x">;fi;done</span>
 </pre></div>
 
 
 <p>删除目录下的空文件：</p>
-<div class="highlight"><pre><span class="n">find</span> <span class="o">-</span><span class="n">maxdepth</span> <span class="mi">1</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">print0</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="mi">0</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+<div class="highlight"><pre>find -maxdepth 1 -type f -empty -print0 | xargs -0 rm -f
 </pre></div>
 
 
@@ -206,21 +215,21 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <p>今天在追查问题时，需要转包分析，用到了tcpdump工具，下面做下记录~</p>
 <h3>基本用法</h3>
 <p>tcpdump 采用命令行方式，需以root权限运行，它的命令格式为：</p>
-<div class="highlight"><pre><span class="n">tcpdump</span> <span class="p">[</span> <span class="o">-</span><span class="n">adeflnNOpqStvx</span> <span class="p">]</span> <span class="p">[</span> <span class="o">-</span><span class="n">c</span> <span class="err">数量</span> <span class="p">]</span> <span class="p">[</span> <span class="o">-</span><span class="n">F</span> <span class="err">文件名</span> <span class="p">]</span>
-        <span class="p">[</span> <span class="o">-</span><span class="n">i</span> <span class="err">网络接口</span> <span class="p">]</span> <span class="p">[</span> <span class="o">-</span><span class="n">r</span> <span class="err">文件名</span><span class="p">]</span> <span class="p">[</span> <span class="o">-</span><span class="n">s</span> <span class="n">snaplen</span> <span class="p">]</span>
-        <span class="p">[</span> <span class="o">-</span><span class="n">T</span> <span class="err">类型</span> <span class="p">]</span> <span class="p">[</span> <span class="o">-</span><span class="n">w</span> <span class="err">文件名</span> <span class="p">]</span> <span class="p">[</span><span class="err">表达式</span> <span class="p">]</span>
+<div class="highlight"><pre>tcpdump [ -adeflnNOpqStvx ] [ -c 数量 ] [ -F 文件名 ]
+        [ -i 网络接口 ] [ -r 文件名] [ -s snaplen ]
+        [ -T 类型 ] [ -w 文件名 ] [表达式 ]
 </pre></div>
 
 
 <p>简单用法：</p>
-<div class="highlight"><pre><span class="n">tcpdump</span> <span class="o">-</span><span class="n">i</span> <span class="n">eth1</span> <span class="n">port</span> <span class="mi">8001</span>
-<span class="cp">#查看localhost数据包</span>
-<span class="n">tcpdump</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="n">port</span> <span class="mi">8001</span>
+<div class="highlight"><pre>tcpdump -i eth1 port 8001
+#查看localhost数据包
+tcpdump -i lo port 8001
 </pre></div>
 
 
 <p>将结果写入文件：</p>
-<div class="highlight"><pre><span class="n">tcpdump</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">nn</span> <span class="n">port</span> <span class="mi">8001</span> <span class="o">-</span><span class="n">w</span> <span class="n">dump</span>
+<div class="highlight"><pre>tcpdump -i lo -nn port 8001 -w dump
 </pre></div>
 
 
@@ -307,8 +316,12 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../archives.html">Archives</a>
                 <li><a href="../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -365,14 +378,14 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

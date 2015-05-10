@@ -7,7 +7,7 @@
 &lt;p&gt;由于需要配置android开发环境，很自然的就装了&lt;code&gt;Eclispe-adt&lt;/code&gt;，装完后，没有开始菜单启动项，感觉不太方便。&lt;/p&gt;
 &lt;p&gt;Google之后，发现将程序添加到开始菜单中其实非常简单。&lt;/p&gt;
 &lt;p&gt;编辑文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;applications&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Eclipse&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;desktopktop&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo vim /usr/share/applications/Eclipse-adt.desktopktop
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -28,22 +28,22 @@
 
 &lt;h3&gt;2.github ssh提交&lt;/h3&gt;
 &lt;p&gt;参考&lt;a href="https://help.github.com/articles/generating-ssh-keys/"&gt;https://help.github.com/articles/generating-ssh-keys/&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git remote set-url origin git@github.com:username/repo.git
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;3.S权限介绍&lt;/h3&gt;
 &lt;p&gt;引用如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sc"&gt;&amp;#39;S&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;setgid&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;execute&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;isn&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;#39;S&amp;#39; = The directory&amp;#39;s setgid bit is set, but the execute bit isn&amp;#39;t set.
 
-&lt;span class="sc"&gt;&amp;#39;s&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;setgid&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;execute&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&amp;#39;s&amp;#39; = The directory&amp;#39;s setgid bit is set, and the execute bit is set.
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.&lt;/p&gt;
 &lt;p&gt;To remove the setGID bit:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;eclipse&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="n"&gt;Taken&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;man&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chmod g-s eclipse/
+Taken from man chmod:
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -52,20 +52,20 @@
 &lt;h3&gt;4.其他技巧&lt;/h3&gt;
 &lt;h4&gt;修改eclispe tab-bar字体&lt;/h4&gt;
 &lt;p&gt;修改文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;brant&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Development&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Android&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;adt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bundle&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eclipse&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eclipse&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;platform_4&lt;/span&gt;&lt;span class="mf"&gt;.2.2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;v201302041200&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;css&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/home/brant/Development/Android/adt-bundle/eclipse/plugins/org.eclipse.platform_4.2.2.v201302041200/css
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="ubuntu"></category><category term="xubuntu"></category></entry><entry><title>Raid 1+0 操作步骤记录</title><link href="http://brantxiong.github.io/pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html" rel="alternate"></link><updated>2014-03-11T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-03-11:pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html</id><summary type="html">&lt;h3&gt;操作结果&lt;/h3&gt;
 &lt;p&gt;所有机器磁盘挂载情况如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;
-&lt;span class="n"&gt;Filesystem&lt;/span&gt;            &lt;span class="n"&gt;Size&lt;/span&gt;  &lt;span class="n"&gt;Used&lt;/span&gt; &lt;span class="n"&gt;Avail&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;Mounted&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda2&lt;/span&gt;             &lt;span class="mf"&gt;8.2&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;  &lt;span class="mf"&gt;3.8&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;  &lt;span class="mf"&gt;4.4&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;  &lt;span class="mi"&gt;47&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda3&lt;/span&gt;             &lt;span class="mf"&gt;1.8&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;  &lt;span class="mf"&gt;1.7&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;  &lt;span class="mf"&gt;1.8&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;md10&lt;/span&gt;             &lt;span class="mf"&gt;8.9&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;  &lt;span class="mi"&gt;168&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;  &lt;span class="mf"&gt;8.4&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[root@HOST work]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2             8.2G  3.8G  4.4G  47% /
+/dev/sda3             1.8T  1.7G  1.8T   1% /home
+/dev/md10             8.9T  168M  8.4T   1% /home/data1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;1. unmount正在使用的盘&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;umount&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;umount&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;for x in `seq 1 9`;do umount /disk&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="x"&gt;;done&lt;/span&gt;
+&lt;span class="x"&gt;for x in `seq 10 11`;do umount /home/disk&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="x"&gt;;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -82,123 +82,123 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 
 
 &lt;h4&gt;3. raid 0方式做成10T的大盘&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mdadm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Cv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;md10&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n5&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;EOF&lt;/span&gt;
-    &lt;span class="n"&gt;y&lt;/span&gt;
-&lt;span class="n"&gt;EOF&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mdadm -Cv /dev/md10 -l 0 -n5 /dev/md[0-4] &amp;lt;&amp;lt;EOF
+    y
+EOF
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;4. 格式化md10为ext4&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mkfs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;ext4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;md10&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkfs -t ext4 /dev/md10
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;5. 挂载大盘到/home/data1&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data1&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;ext4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;md10&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir /home/data1 &amp;amp;&amp;amp; mount -t ext4 /dev/md10 /home/data1/
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="raid"></category></entry><entry><title>ubuntu下搭建web svn</title><link href="http://brantxiong.github.io/pages/2014/03/04/ubuntuxia-da-jian-web-svn.html" rel="alternate"></link><updated>2014-03-04T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-03-04:pages/2014/03/04/ubuntuxia-da-jian-web-svn.html</id><summary type="html">&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;嗯，为了方便开发，需在VPS（环境为ubuntu 12.04）搭建svn服务。本文主要记录下搭建的整体步骤~&lt;/p&gt;
 &lt;h2&gt;步骤&lt;/h2&gt;
 &lt;h3&gt;安装svn&lt;/h3&gt;
 &lt;p&gt;过程主要参考：&lt;a href="https://help.ubuntu.com/community/Subversion"&gt;https://help.ubuntu.com/community/Subversion&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;首先安装subversion &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;subversion&lt;/span&gt; &lt;span class="n"&gt;subversion&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install subversion subversion-tools
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装完成后，需建立&lt;code&gt;subversion&lt;/code&gt;用户组来拥有资源目录，然后将nginx的用户添加到该用户组（假设nginx的配置为&lt;code&gt;user  www-data;&lt;/code&gt;）,具体操作如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;groupadd&lt;/span&gt; &lt;span class="n"&gt;subversion&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;usermod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt; &lt;span class="n"&gt;subversion&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;
-&lt;span class="cp"&gt;#验证&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;groups&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo groupadd subversion
+sudo usermod -a -G subversion www-data
+#验证
+sudo groups www-data
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;下面建立svn资源库，以&lt;code&gt;myproject&lt;/code&gt;为例   &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="n"&gt;myproject&lt;/span&gt;    
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;svnadmin&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;myproject&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo mkdir ~/svn
+cd ~/svn
+sudo mkdir myproject    
+sudo svnadmin create ~/myproject
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;更改目录权限&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;subversion&lt;/span&gt; &lt;span class="n"&gt;myproject&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;rws&lt;/span&gt; &lt;span class="n"&gt;myproject&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd ~/svn
+sudo chown -R www-data:subversion myproject
+sudo chmod -R g+rws myproject
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;下面就可以测试下安装是否OK了~&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="n"&gt;svn&lt;/span&gt; &lt;span class="n"&gt;co&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//localhost/home/diors/svn/myproject&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; svn co file://localhost/home/diors/svn/myproject
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;通过http访问svn&lt;/h3&gt;
 &lt;p&gt;因为目前服务器采用的是nginx，但是由于nginx现在暂时不支持subversion，所以只能安装apache集成subversion，然后通过nginx proxy给apache来访问代码仓库。&lt;/p&gt;
 &lt;p&gt;安装apache2及subversion模块&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;apache2&lt;/span&gt; &lt;span class="n"&gt;libapache2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install apache2 libapache2-svn
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;修改端口并启动&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo vim /etc/apache2/ports.conf
+sudo /etc/init.d/apache2 restart
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;在&lt;code&gt;/etc/apache2/mods-available/dav_svn.conf&lt;/code&gt;中添加如下配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Subversion&lt;/span&gt;&lt;span class="err"&gt;版本可用的&lt;/span&gt;&lt;span class="nb"&gt;URL&lt;/span&gt;&lt;span class="err"&gt;是&lt;/span&gt;&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//域名或IP/svn&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Location&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;svn&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;myproject&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;告诉&lt;/span&gt;&lt;span class="nx"&gt;Apache&lt;/span&gt;&lt;span class="err"&gt;是哪个模块响应哪个&lt;/span&gt;&lt;span class="nb"&gt;URL&lt;/span&gt;&lt;span class="err"&gt;的请求，在这里是&lt;/span&gt;&lt;span class="nx"&gt;Subversion&lt;/span&gt;&lt;span class="err"&gt;模块&lt;/span&gt;
-    &lt;span class="nx"&gt;DAV&lt;/span&gt; &lt;span class="nx"&gt;svn&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Subversion版本可用的URL是http://域名或IP/svn
+&lt;span class="nt"&gt;&amp;lt;Location&lt;/span&gt; &lt;span class="err"&gt;/svn/myproject&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    # 告诉Apache是哪个模块响应哪个URL的请求，在这里是Subversion模块
+    DAV svn
 
-    &lt;span class="err"&gt;#告诉&lt;/span&gt;&lt;span class="nx"&gt;Subversion&lt;/span&gt;&lt;span class="err"&gt;需要查看的版本库在&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;home&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;svn&lt;/span&gt;&lt;span class="err"&gt;之下。&lt;/span&gt;
-    &lt;span class="err"&gt;#如果不希望为每个单独的项目都进行单独的设置，可以把所有项目都存放在统一的资源库目录&lt;/span&gt;
-    &lt;span class="err"&gt;#使用&lt;/span&gt;&lt;span class="nx"&gt;SVNParentPath&lt;/span&gt;&lt;span class="err"&gt;指令来指定存放所有项目的路径。否则使用&lt;/span&gt;&lt;span class="nx"&gt;SVNPath&lt;/span&gt;
-    &lt;span class="nx"&gt;SVNParentPath&lt;/span&gt; &lt;span class="err"&gt;~&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;svn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+    #告诉Subversion需要查看的版本库在/home/svn之下。
+    #如果不希望为每个单独的项目都进行单独的设置，可以把所有项目都存放在统一的资源库目录
+    #使用SVNParentPath指令来指定存放所有项目的路径。否则使用SVNPath
+    SVNParentPath ~/svn/
 
-    &lt;span class="err"&gt;#认证类型为基本认证，就是用户名和密码&lt;/span&gt;
-    &lt;span class="nx"&gt;AuthType&lt;/span&gt; &lt;span class="nx"&gt;Basic&lt;/span&gt;
+    #认证类型为基本认证，就是用户名和密码
+    AuthType Basic
 
-    &lt;span class="err"&gt;#认证名称，将在浏览器界面弹出一个对话框，标题为&lt;/span&gt;&lt;span class="nx"&gt;Subversion&lt;/span&gt; &lt;span class="nx"&gt;repository&lt;/span&gt;
-    &lt;span class="nx"&gt;AuthName&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Subversion repository&amp;quot;&lt;/span&gt;
-    &lt;span class="nx"&gt;AuthUserFile&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;etc&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;subversion&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;passwd&lt;/span&gt;
+    #认证名称，将在浏览器界面弹出一个对话框，标题为Subversion repository
+    AuthName &amp;quot;Subversion repository&amp;quot;
+    AuthUserFile /etc/subversion/passwd
 
-    &lt;span class="err"&gt;#禁止匿名访问&lt;/span&gt;
-    &lt;span class="k"&gt;Require&lt;/span&gt; &lt;span class="n"&gt;valid&lt;/span&gt;&lt;span class="na"&gt;-user&lt;/span&gt;
+    #禁止匿名访问
+    Require valid-user
 
-&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nx"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/Location&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;创建认证用户：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# first user&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;htpasswd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;subversion&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="n"&gt;user_name&lt;/span&gt;
-&lt;span class="cp"&gt;# second user&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;htpasswd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;subversion&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="n"&gt;second_user_name&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# first user
+sudo htpasswd -c /etc/subversion/passwd user_name
+# second user
+sudo htpasswd /etc/subversion/passwd second_user_name
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;之后重启apache2就可以了，接下来就是配置nginx转发啦~&lt;/p&gt;
 &lt;h3&gt;安装WebSVN&lt;/h3&gt;
 &lt;p&gt;首先下载最新版本的&lt;code&gt;WebSVN&lt;/code&gt;(官网：&lt;a href="http://www.websvn.info/download/"&gt;http://www.websvn.info/download/&lt;/a&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//websvn.tigris.org/files/documents/1380/49056/websvn-2.3.3.tar.gz&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://websvn.tigris.org/files/documents/1380/49056/websvn-2.3.3.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;解压后放到nginx的 &lt;code&gt;wwwroot&lt;/code&gt;目录下，并配置nginx （这里就略去了~..）&lt;/p&gt;
 &lt;p&gt;之后，需修改配置文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;distconfig&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="nt"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;distconfig&lt;/span&gt;&lt;span class="nc"&gt;.php&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="nt"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;config&lt;/span&gt;&lt;span class="nc"&gt;.php&lt;/span&gt;
 
-&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+&lt;span class="nt"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="nt"&gt;websvn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;include&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;config&lt;/span&gt;&lt;span class="nc"&gt;.php&lt;/span&gt;
 
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;addRepositorySubpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;myproject&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;///home/../myproject&amp;#39;, &amp;#39;myproject&amp;#39;);&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;config-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;addRepositorySubpath&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;myproject&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;file:///home/../myproject&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;myproject&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;在nginx中增加访问控制：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="n"&gt;auth_basic&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Restricted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="n"&gt;auth_basic_user_file&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;subversion&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; auth_basic &amp;quot;Restricted&amp;quot;;
+ auth_basic_user_file /etc/subversion/passwd;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -211,59 +211,59 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;/blockquote&gt;
 &lt;h2&gt;celery安装&lt;/h2&gt;
 &lt;p&gt;官网：&lt;a href="http://www.celeryproject.org/"&gt;http://www.celeryproject.org/&lt;/a&gt;，celery利用python编写，实现了分布式的消息队列。安装如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;celery&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo pip install celery
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;此外，celery需要方案来实现发送和接收消息，通常通过一种&lt;code&gt;message broker&lt;/code&gt;的独立服务来完成，我们安装官方推荐的&lt;a href="http://www.rabbitmq.com/"&gt;RabbitMQ&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;rabbitmq&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install rabbitmq-server
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;celery介绍&lt;/h2&gt;
 &lt;p&gt;首先，我们需要创建一个celery的实例，编写文件&lt;code&gt;tasks.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;celery&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Celery&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;celery&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Celery&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Celery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;tasks&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;broker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;amqp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//guest@localhost//&amp;#39;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Celery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tasks&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;broker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;amqp://guest@localhost//&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;task&lt;/span&gt;
-    &lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nd"&gt;@app.task&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;第一个参数&lt;code&gt;tasks&lt;/code&gt;是当前模块的名称，第二个参数指定了所使用的&lt;code&gt;message broker&lt;/code&gt;的URL，上使用的是&lt;code&gt;RabbitMQ&lt;/code&gt;默认URL&lt;/p&gt;
 &lt;h3&gt;启动celery work进程&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;celery&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;tasks&lt;/span&gt; &lt;span class="n"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;loglevel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;
-&lt;span class="cp"&gt;#帮助&lt;/span&gt;
-&lt;span class="n"&gt;celery&lt;/span&gt; &lt;span class="n"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt;
-&lt;span class="n"&gt;celery&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;celery -A tasks worker --loglevel=info
+#帮助
+celery worker --help
+celery help
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;调用task&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;tasks&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tasks&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;celery在django的使用&lt;/h2&gt;
 &lt;p&gt;整体框架如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;      &lt;span class="o"&gt;*--------*&lt;/span&gt;                     &lt;span class="o"&gt;+----------+&lt;/span&gt;
-      &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;                     &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;
-      &lt;span class="o"&gt;|&lt;/span&gt; Django &lt;span class="o"&gt;&amp;gt;---&lt;/span&gt; Enqueue tasks &lt;span class="o"&gt;---&amp;gt;&lt;/span&gt; RabbitMQ &lt;span class="o"&gt;&amp;gt;-----&lt;/span&gt;.
-      &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;                     &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;Broker&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-      &lt;span class="o"&gt;*---&lt;/span&gt;v&lt;span class="o"&gt;----*&lt;/span&gt;                     &lt;span class="o"&gt;+----------+&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-          &lt;span class="o"&gt;|&lt;/span&gt;                                           &lt;span class="o"&gt;|&lt;/span&gt;
-          &lt;span class="o"&gt;|&lt;/span&gt; Query                    &lt;span class="o"&gt;*----------*&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-          &lt;span class="o"&gt;|&lt;/span&gt;                          &lt;span class="o"&gt;|&lt;/span&gt;  Celery  &lt;span class="o"&gt;&amp;lt;-----+&lt;/span&gt;
-        &lt;span class="o"&gt;+-&lt;/span&gt;v&lt;span class="o"&gt;----------+&lt;/span&gt;  .&lt;span class="o"&gt;--&lt;/span&gt; Events &lt;span class="o"&gt;--&amp;lt;&lt;/span&gt;  Worker  &lt;span class="o"&gt;|&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-        &lt;span class="o"&gt;|&lt;/span&gt;            &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;             &lt;span class="o"&gt;*----------*&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt; Consume
-        &lt;span class="o"&gt;|&lt;/span&gt; PostgreSQL &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;                               &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; Run Tasks
-        &lt;span class="o"&gt;|&lt;/span&gt;            &lt;span class="o"&gt;|&lt;/span&gt; \             &lt;span class="o"&gt;*----------*&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-        &lt;span class="o"&gt;+------------+&lt;/span&gt;  `&lt;span class="o"&gt;--&lt;/span&gt; Events &lt;span class="o"&gt;--&amp;lt;&lt;/span&gt;  Celery  &lt;span class="o"&gt;|&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;
-                                     &lt;span class="o"&gt;|&lt;/span&gt;  Worker  &lt;span class="o"&gt;&amp;lt;-----&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
-                                     &lt;span class="o"&gt;*----------*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;      *--------*                     +----------+
+      |        |                     |          |
+      | Django &amp;gt;--- Enqueue tasks ---&amp;gt; RabbitMQ &amp;gt;-----.
+      |        |                     | (Broker) |     |
+      *---v----*                     +----------+     |
+          |                                           |
+          | Query                    *----------*     |
+          |                          |  Celery  &amp;lt;-----+
+        +-v----------+  .-- Events --&amp;lt;  Worker  |     |
+        |            | /             *----------*     | Consume
+        | PostgreSQL &amp;lt;=                               | &amp;amp; Run Tasks
+        |            | \             *----------*     |
+        +------------+  `-- Events --&amp;lt;  Celery  |     |
+                                     |  Worker  &amp;lt;-----&amp;#39;
+                                     *----------*
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -277,13 +277,13 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;p&gt;当然同时也会读取pipe文件svcontrol的命令,然后根据命令去执行不同的动作,
 如果子进程因某种原因导致退出,则supervise通过waitpid或者wait3获知,并继续启动模块,如果模块异常导致无法启动,则会使supervise陷入死循环,不断的启动模块。&lt;/p&gt;
 &lt;h3&gt;安装&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;daemontools&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install daemontools
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;用法&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#supervise 目录名&lt;/span&gt;
-&lt;span class="n"&gt;supervise&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;#supervise 目录名
+supervise s
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -297,21 +297,21 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;/blockquote&gt;
 &lt;h2&gt;具体步骤&lt;/h2&gt;
 &lt;p&gt;利用bitbucket完成teamwork和持续集成的流程如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;                   &lt;span class="o"&gt;+----------+&lt;/span&gt;
-                   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Develop&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
-                   &lt;span class="o"&gt;+----+-----+&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sourcetree&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt;
-                   &lt;span class="o"&gt;+----&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-----+&lt;/span&gt;
-                   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Bitbucket&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-                   &lt;span class="o"&gt;+----+-----+&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;Server&lt;/span&gt;
-                        &lt;span class="o"&gt;|&lt;/span&gt;
-                   &lt;span class="o"&gt;+----&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-----+&lt;/span&gt;
-                   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Server&lt;/span&gt;   &lt;span class="o"&gt;|&lt;/span&gt;
-                   &lt;span class="o"&gt;+----------+&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;                   +----------+
+                   | Develop  |
+                   +----+-----+
+                        |
+                        | push with sourcetree
+                        |
+                   +----v-----+
+                   | Bitbucket|
+                   +----+-----+
+                        |
+                        | fetch and release on Server
+                        |
+                   +----v-----+
+                   | Server   |
+                   +----------+
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -319,22 +319,22 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;h3&gt;服务端配置&lt;/h3&gt;
 &lt;p&gt;生成public key并添加至bitbucket&lt;/p&gt;
 &lt;p&gt;首先登陆&lt;a href="https://bitbucket.org"&gt;https://bitbucket.org&lt;/a&gt;,依次选择&lt;code&gt;Username &amp;gt; Account &amp;gt; SSH keys&lt;/code&gt;。然后登陆服务器，生成public key：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
-&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keygen&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;rsa&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;..&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_rsa&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd ~ &amp;amp;&amp;amp; mkdir .ssh
+ssh-keygen -t rsa -C &amp;quot;..&amp;quot;
+cat ~/.ssh/id_rsa.pub
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;添加完public key之后，执行如下命令：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Tv&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;bitbucket&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ssh -Tv git@bitbucket.org
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;之后即可正常使用git，无需账号密码，例如第一次使用时，如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;README&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;bitbucket&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;YOUR&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git add README.md
+git commit -m &amp;#39;First commit&amp;#39;
+git remote add origin git@bitbucket.org:YOUR.git
+git push origin master
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -345,12 +345,12 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;p&gt;今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考&lt;/p&gt;
 &lt;h2&gt;异常文件处理&lt;/h2&gt;
 &lt;p&gt;删除文件最后的异常行：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ls&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$line&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;},&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;$&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;fi&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;for file in `ls`; do line=`tail -1 &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="x"&gt;`; if [ &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; != &amp;quot;},&amp;quot; ]; then sed -i &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="x"&gt;&amp;#39; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="x"&gt;;fi;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;删除目录下的空文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;maxdepth&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;print0&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xargs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;find -maxdepth 1 -type f -empty -print0 | xargs -0 rm -f
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -409,21 +409,21 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 
 &lt;h2&gt;其他技巧&lt;/h2&gt;
 &lt;p&gt;python计算平均数：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mf"&gt;.2f&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;def average(values):
+    return float(&amp;#39;%.2f&amp;#39; % (sum(values, 0.0) / len(values)))
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;python找出list中重复的值：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;find_dup_value_from_list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inlist&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;collections&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inlist&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;def find_dup_value_from_list(inlist):
+    return [x for x, y in collections.Counter(inlist).items() if y &amp;gt; 1]
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;python匹配出日志中key=value类型的值：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;find_value_from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;\&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findall&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;def find_value_from_string(string, key):
+    regex = &amp;#39;\s*&amp;#39; + key + &amp;#39;=(\w+)\s*&amp;#39; 
+    return re.findall(regex, string)
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -433,45 +433,45 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 &lt;p&gt;今天在追查问题时，需要转包分析，用到了tcpdump工具，下面做下记录~&lt;/p&gt;
 &lt;h3&gt;基本用法&lt;/h3&gt;
 &lt;p&gt;tcpdump 采用命令行方式，需以root权限运行，它的命令格式为：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adeflnNOpqStvx&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;数量&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt; &lt;span class="err"&gt;文件名&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-        &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="err"&gt;网络接口&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;文件名&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;snaplen&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-        &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="err"&gt;类型&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="err"&gt;文件名&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;表达式&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcpdump [ -adeflnNOpqStvx ] [ -c 数量 ] [ -F 文件名 ]
+        [ -i 网络接口 ] [ -r 文件名] [ -s snaplen ]
+        [ -T 类型 ] [ -w 文件名 ] [表达式 ]
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;简单用法：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt;
-&lt;span class="cp"&gt;#查看localhost数据包&lt;/span&gt;
-&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcpdump -i eth1 port 8001
+#查看localhost数据包
+tcpdump -i lo port 8001
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;将结果写入文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nn&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="n"&gt;dump&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcpdump -i lo -nn port 8001 -w dump
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;显示http header：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vvvs&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="n"&gt;dump&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcpdump -vvvs 1024 -l -A -i lo port 8001 -w dump
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;查看tcpdump生成的文件：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcpdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;qns&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;dump&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcpdump -qns 0 -X -r dump
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="tcpdump"></category></entry><entry><title>Memcached和Redis基础</title><link href="http://brantxiong.github.io/pages/2014/02/17/memcached_and_redis_basic.html" rel="alternate"></link><updated>2014-02-17T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-02-17:pages/2014/02/17/memcached_and_redis_basic.html</id><summary type="html">&lt;p&gt;本文主要介绍Memcached和Redisd的使用基础&lt;/p&gt;
 &lt;h3&gt;Memcached安装和使用&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;memcached&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pecl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;memcache&lt;/span&gt;
-&lt;span class="n"&gt;memcached&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;11211&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;memcached&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;memcached&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;memcached&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install memcached
+sudo apt-get install php-pecl-memcache
+memcached -d -p 11211 -u memcached -m 64 -c 1024 -P /var/run/memcached/memcached.pid
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;参数说明：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="err"&gt;启动一个守护进程&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="err"&gt;端口&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="err"&gt;分配的内存是&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;最大运行并发数&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt; &lt;span class="n"&gt;memcache&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-d 启动一个守护进程
+-p 端口
+-m 分配的内存是M
+-c 最大运行并发数
+-P memcache的pid
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -490,23 +490,23 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 
 
 &lt;p&gt;登陆命令：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;stats&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt; &lt;span class="mi"&gt;11211&lt;/span&gt;
-&lt;span class="n"&gt;telnet&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt; &lt;span class="mi"&gt;11211&lt;/span&gt; &lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="n"&gt;quit&lt;/span&gt;&lt;span class="err"&gt;退出&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;printf &amp;quot;stats\r\n&amp;quot; | nc 127.0.0.1 11211
+telnet localhost 11211 stats quit退出
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Redis使用&lt;/h3&gt;
 &lt;p&gt;Redis的配置文件 端口6379
 &lt;code&gt;/etc/redis.conf&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;启动&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt;
-&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
-&lt;span class="err"&gt;插入一个值&lt;/span&gt;
-&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;phper.yang&amp;quot;&lt;/span&gt;
-&lt;span class="err"&gt;获取键值&lt;/span&gt;
-&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;
-&lt;span class="err"&gt;关闭&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt;
-&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="n"&gt;shutdown&lt;/span&gt; &lt;span class="err"&gt;关闭所有&lt;/span&gt;
-&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;6397&lt;/span&gt; &lt;span class="n"&gt;shutdown&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;启动Redis
+redis-server /etc/redis.conf
+插入一个值
+redis-cli set test &amp;quot;phper.yang&amp;quot;
+获取键值
+redis-cli get test
+关闭Redis
+redis-cli shutdown 关闭所有
+redis-cli -p 6397 shutdown
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -521,64 +521,64 @@ eval mdadm -Cv /dev/md&lt;span class="nv"&gt;$i&lt;/span&gt; -l 1 -n2 /dev/sd[&l
 
 &lt;p&gt;下面是一个redis的类
 Redis Class使用:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;sc&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;//是否开启主从，需要Redis 配置文件配置好&lt;/span&gt;
-    &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="c1"&gt;//主写&lt;/span&gt;
-            &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;63888&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;123456&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;slave&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="c1"&gt;//从读&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;63791&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;123456&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="c1"&gt;//从读&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;63792&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;123456&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;conf&lt;/span&gt;&lt;span class="x"&gt; = array(&lt;/span&gt;
+&lt;span class="x"&gt;    &amp;#39;sc&amp;#39; =&amp;gt; true, //是否开启主从，需要Redis 配置文件配置好&lt;/span&gt;
+&lt;span class="x"&gt;    &amp;#39;servers&amp;#39; =&amp;gt; array(&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;#39;master&amp;#39; =&amp;gt; array( //主写&lt;/span&gt;
+&lt;span class="x"&gt;            &amp;#39;host&amp;#39; =&amp;gt; &amp;#39;127.0.0.1&amp;#39;,&lt;/span&gt;
+&lt;span class="x"&gt;            &amp;#39;port&amp;#39; =&amp;gt; 63888,&lt;/span&gt;
+&lt;span class="x"&gt;            &amp;#39;timeout&amp;#39; =&amp;gt; 10,&lt;/span&gt;
+&lt;span class="x"&gt;            &amp;#39;auth&amp;#39; =&amp;gt; 123456,&lt;/span&gt;
+&lt;span class="x"&gt;        ),&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;#39;slave&amp;#39; =&amp;gt; array(&lt;/span&gt;
+&lt;span class="x"&gt;            array( //从读&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;host&amp;#39; =&amp;gt; &amp;#39;127.0.0.1&amp;#39;,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;port&amp;#39; =&amp;gt; 63791,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;timeout&amp;#39; =&amp;gt; 10,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;auth&amp;#39; =&amp;gt; 123456,&lt;/span&gt;
+&lt;span class="x"&gt;            ),&lt;/span&gt;
+&lt;span class="x"&gt;            array( //从读&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;host&amp;#39; =&amp;gt; &amp;#39;127.0.0.1&amp;#39;,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;port&amp;#39; =&amp;gt; 63792,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;timeout&amp;#39; =&amp;gt; 10,&lt;/span&gt;
+&lt;span class="x"&gt;                &amp;#39;auth&amp;#39; =&amp;gt; 123456,&lt;/span&gt;
+&lt;span class="x"&gt;            )&lt;/span&gt;
+&lt;span class="x"&gt;        ),&lt;/span&gt;
+&lt;span class="x"&gt;    )&lt;/span&gt;
+&lt;span class="x"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;关于配置Redis的主从配置说明:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;6378&lt;/span&gt;
-&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;6378&lt;/span&gt;
-&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6379&lt;/span&gt; &lt;span class="n"&gt;slaveof&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt; &lt;span class="mi"&gt;6379&lt;/span&gt;
-&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;6379&lt;/span&gt;
-&lt;span class="n"&gt;RDB&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bgsave&lt;/span&gt; &lt;span class="err"&gt;命令&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;m.conf  port 6378
+~/bin/redis-cli -h 127.0.0.1 -p 6378
+s.conf：port: 6379 slaveof 127.0.0.1 6379
+~/bin/redis-cli -h 127.0.0.1 -p 6379
+RDB(bgsave 命令)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;配置文件&lt;code&gt;redis.conf&lt;/code&gt;：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="mi"&gt;900&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;900&lt;/span&gt;&lt;span class="err"&gt;秒内如果超过&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;个&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="err"&gt;被修改，则发起快照保存&lt;/span&gt;
-&lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="err"&gt;秒内容如超过&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="err"&gt;个&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="err"&gt;被修改，则发起快照保存&lt;/span&gt;
-&lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
-&lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bgsave&lt;/span&gt;
-&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jumbo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rdb&lt;/span&gt;
-&lt;span class="n"&gt;AOF&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bgrewriteaof&lt;/span&gt;&lt;span class="err"&gt;命令&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;appendonly&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;  &lt;span class="c1"&gt;//启用aof持久化方式&lt;/span&gt;
-&lt;span class="cp"&gt;# appendfsync always  &lt;/span&gt;&lt;span class="c1"&gt;//每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用&lt;/span&gt;
-&lt;span class="n"&gt;appendfsync&lt;/span&gt; &lt;span class="n"&gt;everysec&lt;/span&gt; &lt;span class="c1"&gt;//每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐&lt;/span&gt;
-&lt;span class="cp"&gt;# appendfsync no    &lt;/span&gt;&lt;span class="c1"&gt;//完全依赖os，性能最好,持久化没保证&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;save 900 1  #900秒内如果超过1个key被修改，则发起快照保存
+save 300 10 #300秒内容如超过10个key被修改，则发起快照保存
+save 60 10000
+save /bgsave
+~/.jumbo/bin/dump.rdb
+AOF(bgrewriteaof命令)
+appendonly yes  //启用aof持久化方式
+# appendfsync always  //每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用
+appendfsync everysec //每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐
+# appendfsync no    //完全依赖os，性能最好,持久化没保证
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;php使用：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getRedis&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;//写数据&lt;/span&gt;
-&lt;span class="n"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;主&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;tcp_port&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getRedis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;//读数据&lt;/span&gt;
-&lt;span class="n"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;从&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;tcp_port&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-&lt;span class="n"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getRedis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="x"&gt; = &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt;&lt;span class="x"&gt;-&amp;gt;getRedis()-&amp;gt;info(); //写数据&lt;/span&gt;
+&lt;span class="x"&gt;print_r(&amp;quot;主&amp;quot; . &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tcp_port&amp;#39;]);&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt;&lt;span class="x"&gt;-&amp;gt;set(&amp;#39;id&amp;#39;, 100);&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="x"&gt; = &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt;&lt;span class="x"&gt;-&amp;gt;getRedis(false)-&amp;gt;info(); //读数据&lt;/span&gt;
+&lt;span class="x"&gt;print_r(&amp;quot;从&amp;quot; . &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tcp_port&amp;#39;]);&lt;/span&gt;
+&lt;span class="x"&gt;print_r(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt;&lt;span class="x"&gt;-&amp;gt;getRedis(false)-&amp;gt;get(&amp;#39;id&amp;#39;));&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="memcached"></category><category term="reids"></category></entry><entry><title>利用tc工具做限速</title><link href="http://brantxiong.github.io/pages/2014/02/17/tc_usage.html" rel="alternate"></link><updated>2014-02-17T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-02-17:pages/2014/02/17/tc_usage.html</id><summary type="html">&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;有关tc的介绍，可以参见&lt;a href="http://www.cyberciti.biz/faq/linux-traffic-shaping-using-tc-to-control-http-traffic/"&gt;tc&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;tc的使用&lt;/h2&gt;
@@ -624,43 +624,43 @@ Redis Class使用:&lt;/p&gt;
 
 &lt;span class="nb"&gt;set&lt;/span&gt; -x
 start &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    /sbin/tc qdisc add dev &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; root handle 1: htb default 25
-    /sbin/tc class add dev &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; parent 1: classid 1:1 htb rate &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SPEED&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;kbps
-    /sbin/tc qdisc add dev &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; parent 1:1 netem delay &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DELAY&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;ms &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;FLOW&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;ms
-    /sbin/tc filter add dev &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; parent 1: protocol ip prio 1 u32 match ip sport &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PORT&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; 0xffff flowid 1:1
+    /sbin/tc qdisc add dev &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; root handle 1: htb default 25
+    /sbin/tc class add dev &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; parent 1: classid 1:1 htb rate &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SPEED&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;kbps
+    /sbin/tc qdisc add dev &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; parent 1:1 netem delay &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DELAY&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;ms &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;FLOW&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;ms
+    /sbin/tc filter add dev &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; parent 1: protocol ip prio &lt;span class="m"&gt;1&lt;/span&gt; u32 match ip sport &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PORT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; 0xffff flowid 1:1
 &lt;span class="o"&gt;}&lt;/span&gt;
 
 stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    /sbin/tc qdisc dele dev &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; root
+    /sbin/tc qdisc dele dev &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;NETWORK_CARD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; root
 &lt;span class="o"&gt;}&lt;/span&gt;
 
-&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$1&amp;quot;&lt;/span&gt; in    
+&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; in    
     start&lt;span class="o"&gt;)&lt;/span&gt;
         start
-        ;;
+        &lt;span class="p"&gt;;;&lt;/span&gt;
     stop&lt;span class="o"&gt;)&lt;/span&gt;
         stop
-        ;;
+        &lt;span class="p"&gt;;;&lt;/span&gt;
     *&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Usage: `basename $0` {start|stop} port delay(ms) speed(KB) flow(ms)&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Usage: `basename &lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt;` {start|stop} port delay(ms) speed(KB) flow(ms)&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;esac&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h3&gt;使用方法&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8900&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="mi"&gt;355&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;Spdy&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8901&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="mi"&gt;355&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;3g 限制http： sh /root/net_limit.sh start 8900 200 355 0
+3g 限制Spdy： sh /root/net_limit.sh start 8901 200 355 0
 
-&lt;span class="err"&gt;慢&lt;/span&gt;&lt;span class="n"&gt;wifi&lt;/span&gt;&lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8900&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="err"&gt;慢&lt;/span&gt;&lt;span class="n"&gt;wifi&lt;/span&gt;&lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;spdy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8901&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+慢wifi限制http:  sh /root/net_limit.sh start 8900 80 2048 0
+慢wifi限制spdy:  sh /root/net_limit.sh start 8901 80 2048 0
 
-&lt;span class="err"&gt;快&lt;/span&gt;&lt;span class="n"&gt;wifi&lt;/span&gt;&lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8900&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="mi"&gt;14748&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="err"&gt;快&lt;/span&gt;&lt;span class="n"&gt;wifi&lt;/span&gt;&lt;span class="err"&gt;限制&lt;/span&gt;&lt;span class="n"&gt;spdy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net_limit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="mi"&gt;8901&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="mi"&gt;14748&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+快wifi限制http: sh /root/net_limit.sh start 8900 40 14748 0
+快wifi限制spdy: sh /root/net_limit.sh start 8901 40 14748 0
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;查看当前限制&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;qdisc&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tc -s qdisc ls dev eth1
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="tc"></category></entry><entry><title>Ubuntu10.04 VPS配置（一）基础环境篇</title><link href="http://brantxiong.github.io/pages/2014/02/17/vps_1.html" rel="alternate"></link><updated>2014-02-17T00:00:00+08:00</updated><author><name>Brant Xiong</name></author><id>tag:brantxiong.github.io,2014-02-17:pages/2014/02/17/vps_1.html</id><summary type="html">&lt;h2&gt;VPS介绍&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;购买网址：&lt;a href="http://www.xehost.com"&gt;http://www.xehost.com&lt;/a&gt;&lt;/li&gt;
@@ -672,203 +672,203 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 - it prevents the user making any system-destroying mistakes
 - it stores all the commands run with sudo to a file where can be reviewed later if needed&lt;/p&gt;
 &lt;p&gt;增加用户&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;   &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;adduser&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;   sudo adduser work
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;增加sudo权限&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sbin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;visudo&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo /usr/sbin/visudo
 
-&lt;span class="cp"&gt;# User privilege specification&lt;/span&gt;
-&lt;span class="n"&gt;rootALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ALL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ALL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;ALL&lt;/span&gt;
-&lt;span class="n"&gt;workALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ALL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ALL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;ALL&lt;/span&gt;
+# User privilege specification
+rootALL=(ALL:ALL) ALL
+workALL=(ALL:ALL) ALL
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;删除用户&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;newuser&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rf&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;newuser&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo userdel newuser
+sudo rm -rf /home/newuser
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;安装tmux 1.8&lt;/h3&gt;
 &lt;p&gt;ubuntu Lucid源中的tmux版本过老，为此，我们手动安装tmux 1.8，&lt;/p&gt;
 &lt;p&gt;安装基础编译环境&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;essential&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install build-essential
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装依赖包&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz&lt;/span&gt;
-&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xzf&lt;/span&gt; &lt;span class="n"&gt;libevent&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;2.0.21&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stable&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;libevent&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;2.0.21&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stable&lt;/span&gt;
-&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;ncurses&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+tar xzf libevent-2.0.21-stable.tar.gz
+cd libevent-2.0.21-stable
+configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+sudo apt-get install ncurses-dev
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装tmux 1.8&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//downloads.sourceforge.net/tmux/tmux-1.8.tar.gz&lt;/span&gt;
-&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xzf&lt;/span&gt; &lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="n"&gt;LDFLAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-Wl,-rpath /usr/local/lib&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;make&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://downloads.sourceforge.net/tmux/tmux-1.8.tar.gz
+tar xzf tmux-1.8.tar.gz
+cd tmux-1.8
+./configure LDFLAGS=&amp;quot;-Wl,-rpath /usr/local/lib&amp;quot;
+make
+sudo make install
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;非root运行tmux技巧&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bash&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;export LD_LIBRARY_PATH=~/tool/bin/lib:$LD_LIBRARY_PATH &amp;amp;&amp;amp; ~/tool/bin/bin/tmux a || ~/tool/bin/bin/tmux -f ~/tool/conf/tmux.conf&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;bash -c &amp;quot;export LD_LIBRARY_PATH=~/tool/bin/lib:&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class="x"&gt; &amp;amp;&amp;amp; ~/tool/bin/bin/tmux a || ~/tool/bin/bin/tmux -f ~/tool/conf/tmux.conf&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;tmux 配置文件&lt;/h4&gt;
 &lt;hr /&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;&amp;quot;&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;splitw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;horizontal&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;splitw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;vertical&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;lower&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;resizep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;resizep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="n"&gt;resizep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;resizep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;swapp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;swapp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;lower&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;set -g prefix ^a
+unbind ^b
+bind a send-prefix
+unbind &amp;#39;&amp;quot;&amp;#39;
+bind - splitw -v # horizontal split
+unbind %
+bind | splitw -h # vertical split
+bind k selectp -U # select upper pane
+bind j selectp -D # select lower pane
+bind h selectp -L # select left pane
+bind l selectp -R # select right pane
+bind ^k resizep -U 10
+bind ^j resizep -D 10
+bind ^h resizep -L 10
+bind ^l resizep -R 10
+bind ^u swapp -U # swap with upper pane
+bind ^d swapp -D # swap with lower pane
 
-&lt;span class="cp"&gt;# THEME&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bg&lt;/span&gt; &lt;span class="n"&gt;black&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fg&lt;/span&gt; &lt;span class="n"&gt;white&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;current&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bg&lt;/span&gt; &lt;span class="n"&gt;white&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;current&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fg&lt;/span&gt; &lt;span class="n"&gt;black&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;current&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="n"&gt;bold&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;#&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;whoami&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;#[fg=green]#(date)#[default] #[fg=green]#(cut -d &amp;#39; &amp;#39; -f 1-3 /proc/loadavg)#[default]&amp;quot;&lt;/span&gt;
+# THEME
+set -g status-bg black
+set -g status-fg white
+set -g window-status-current-bg white
+set -g window-status-current-fg black
+set -g window-status-current-attr bold
+set -g status-interval 60
+set -g status-left-length 30
+set -g status-left &amp;#39;#[fg=green](#S) #(whoami)&amp;#39;
+set -g status-right &amp;quot;#[fg=green]#(date)#[default] #[fg=green]#(cut -d &amp;#39; &amp;#39; -f 1-3 /proc/loadavg)#[default]&amp;quot;
 
-&lt;span class="n"&gt;setw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt;
-&lt;span class="n"&gt;setw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mouse&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;terminal&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;overrides&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;xterm&lt;/span&gt;&lt;span class="o"&gt;*:&lt;/span&gt;&lt;span class="n"&gt;smcup&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;rmcup&lt;/span&gt;&lt;span class="err"&gt;@&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="cp"&gt;#set -s escape-time 0&lt;/span&gt;
-&lt;span class="n"&gt;setw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;aggressive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;resize&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+setw -g mode-keys vi
+setw -g mode-mouse off
+set -g terminal-overrides &amp;#39;xterm*:smcup@:rmcup@&amp;#39;
+set -g base-index 1
+#set -s escape-time 0
+setw -g aggressive-resize on
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+unbind r
+bind r source-file ~/.tmux.conf
 
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;history&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;limit&lt;/span&gt; &lt;span class="mi"&gt;25000&lt;/span&gt;
+set -g history-limit 25000
 
-&lt;span class="cp"&gt;#T-Mobile G2 workarounds&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;Q&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F1&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;W&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F2&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;E&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F3&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F4&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F5&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F6&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F7&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F8&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F9&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;P&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F10&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F11&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;F12&lt;/span&gt;
+#T-Mobile G2 workarounds
+bind Q send-keys F1
+bind W send-keys F2
+bind E send-keys F3
+bind R send-keys F4
+bind T send-keys F5
+bind Y send-keys F6
+bind U send-keys F7
+bind I send-keys F8
+bind O send-keys F9
+bind P send-keys F10
+bind A send-keys F11
+bind S send-keys F12
 
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+bind / send-keys |
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;Tab&lt;/span&gt;
+unbind t
+bind t send-keys Tab
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="n"&gt;clock&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;
+unbind N
+bind N clock-mode
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="err"&gt;@&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="err"&gt;@&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;Escape&lt;/span&gt;
+unbind @
+bind @ send-keys Escape
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;Home&lt;/span&gt;
+unbind H
+bind H send-keys Home
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;End&lt;/span&gt;
+unbind L
+bind L send-keys End
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;J&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;J&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;PageDown&lt;/span&gt;
+unbind J
+bind J send-keys PageDown
 
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;PageUp&lt;/span&gt;
+unbind K
+bind K send-keys PageUp
 
-&lt;span class="cp"&gt;#Alt-n window switching&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;
+#Alt-n window switching
+unbind M-1
+unbind M-2
+unbind M-3
+unbind M-4
+unbind M-5
+unbind M-6
+unbind M-7
+unbind M-8
+unbind M-9
+bind-key -n M-1 select-window -t :1
+bind-key -n M-2 select-window -t :2
+bind-key -n M-3 select-window -t :3
+bind-key -n M-4 select-window -t :4
+bind-key -n M-5 select-window -t :5
+bind-key -n M-6 select-window -t :6
+bind-key -n M-7 select-window -t :7
+bind-key -n M-8 select-window -t :8
+bind-key -n M-9 select-window -t :9
 
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;PageDown&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;PageUp&lt;/span&gt; &lt;span class="n"&gt;previous&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;
+bind-key -n ^PageDown next-window
+bind-key -n ^PageUp previous-window
 
-&lt;span class="cp"&gt;#set -g default-terminal &amp;quot;screen-256color&amp;quot;&lt;/span&gt;
-&lt;span class="cp"&gt;#For compatibility&lt;/span&gt;
-&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;terminal&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xterm-color&amp;quot;&lt;/span&gt;
+#set -g default-terminal &amp;quot;screen-256color&amp;quot;
+#For compatibility
+set -g default-terminal &amp;quot;xterm-color&amp;quot;
 
-&lt;span class="cp"&gt;##CLIPBOARD selection integration&lt;/span&gt;
-&lt;span class="cp"&gt;##Requires prefix key before the command key&lt;/span&gt;
-&lt;span class="cp"&gt;#Copy tmux paste buffer to CLIPBOARD&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tmux show-buffer | xclip -i -selection clipboard&amp;quot;&lt;/span&gt;
-&lt;span class="cp"&gt;#Copy CLIPBOARD to tmux paste buffer and paste tmux paste buffer&lt;/span&gt;
-&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tmux set-buffer &lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;$(xclip -o -selection clipboard)&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;; tmux paste-buffer&amp;quot;&lt;/span&gt;
+##CLIPBOARD selection integration
+##Requires prefix key before the command key
+#Copy tmux paste buffer to CLIPBOARD
+bind C-c run &amp;quot;tmux show-buffer | xclip -i -selection clipboard&amp;quot;
+#Copy CLIPBOARD to tmux paste buffer and paste tmux paste buffer
+bind C-v run &amp;quot;tmux set-buffer \&amp;quot;$(xclip -o -selection clipboard)\&amp;quot;; tmux paste-buffer&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;locale设置&lt;/h3&gt;
 &lt;p&gt;查看locale&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# 查看当前系统语言环境&lt;/span&gt;
-&lt;span class="n"&gt;locale&lt;/span&gt;
-&lt;span class="cp"&gt;# 查看系统内安装的locale&lt;/span&gt;
-&lt;span class="n"&gt;locale&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# 查看当前系统语言环境
+locale
+# 查看系统内安装的locale
+locale -a
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装zh_CN.utf8&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;locales&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pack&lt;/span&gt; &lt;span class="n"&gt;zh_CN&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd /usr/share/locales
+sudo ./install-language-pack zh_CN
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;locale配置： &lt;code&gt;/etc/default/locale&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LANGUAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
-&lt;span class="n"&gt;LC_CTYPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;LC_NUMERIC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_TIME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_COLLATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;LC_MONETARY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_MESSAGES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;LC_PAPER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_TELEPHONE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_MEASUREMENT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_IDENTIFICATION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
-&lt;span class="n"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE=&amp;quot;en_US.UTF-8&amp;quot;
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+LC_COLLATE=&amp;quot;en_US.UTF-8&amp;quot;
+LC_MONETARY=zh_CN.UTF-8
+LC_MESSAGES=&amp;quot;en_US.UTF-8&amp;quot;
+LC_PAPER=zh_CN.UTF-8
+LC_NAME=zh_CN.UTF-8
+LC_ADDRESS=zh_CN.UTF-8
+LC_TELEPHONE=zh_CN.UTF-8
+LC_MEASUREMENT=zh_CN.UTF-8
+LC_IDENTIFICATION=zh_CN.UTF-8
+LC_ALL=
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -877,52 +877,52 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 &lt;p&gt;The mosh-client binary must exist on the user's machine, and the mosh-server binary on the remote host.&lt;/p&gt;
 &lt;p&gt;参考：&lt;a href="http://mosh.mit.edu/"&gt;http://mosh.mit.edu/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;安装&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;ppa&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;keithw&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mosh&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mosh&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:keithw/mosh
+sudo apt-get update
+sudo apt-get install mosh
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;防火墙配置&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;iptables&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; &lt;span class="mi"&gt;60000&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;61000&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo iptables -I INPUT 1 -p udp --dport 60000:61000 -j ACCEPT
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;mosh登陆&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mosh&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="mf"&gt;162.221.4.10&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mosh&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="mf"&gt;@162.221.4.10&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;ftp server安装&lt;/h3&gt;
 &lt;p&gt;安装ftp server&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;vsftpd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install vsftpd
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;配置：&lt;code&gt;/etc/vsftpd.conf&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;生效如下配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;chroot_local_user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;YES&lt;/span&gt;
-&lt;span class="n"&gt;chroot_list_enable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;YES&lt;/span&gt;
-&lt;span class="n"&gt;chroot_list_file&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vsftpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chroot_list&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chroot_local_user=YES
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;重启ftp&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vsftpd&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo /etc/init.d/vsftpd restart
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;nginx 安装与配置&lt;/h3&gt;
 &lt;p&gt;参考：&lt;a href="http://wiki.nginx.org/Install"&gt;http://wiki.nginx.org/Install&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;安装add-apt-repository&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;properties&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-software-properties
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装nginx&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;ppa&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stable&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;nginx&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:nginx/stable
+sudo apt-get update
+sudo apt-get install nginx
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -930,20 +930,20 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 参考：&lt;a href="http://blog.martinfjordvald.com/2010/07/nginx-primer"&gt;http://blog.martinfjordvald.com/2010/07/nginx-primer&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;php-fpm&amp;amp;mysql 安装&lt;/h3&gt;
 &lt;p&gt;增加ppa&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;ppa&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ondrej&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;oldstable&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-add-repository ppa:ondrej/php5-oldstable
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;安装php组件&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;suhosin&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gd&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fpm&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt; &lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pear&lt;/span&gt; &lt;span class="n"&gt;php5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;memcache&lt;/span&gt; &lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apc&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo aptitude -y install php5-cli php5-common php5-mysql php5-suhosin php5-gd
+sudo aptitude -y install php5-fpm php5-cgi php-pear php5-memcache php-apc
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;ubuntu 增加lib&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ld&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;newlib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
-&lt;span class="cp"&gt;# Add the path to file and save it&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ldconfig&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo vim /etc/ld.so.conf.d/newlib.conf
+# Add the path to file and save it
+sudo ldconfig
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -970,28 +970,28 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 &lt;li&gt;耐心等待一段时间（不超过10分钟），登陆http://username.github.io，会发现自己的个人博客已经生成。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;安装Pelican和Markdown&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
-&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install pelican
+pip install markdown
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;搭建骨架&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt;
-&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir blog
+cd blog
+pelican-quickstart
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;根据提示一步步输入相应的配置项，不知道如何设置的接受默认即可，后续可以通过编辑pelicanconf.py文件更改配置)&lt;/p&gt;
 &lt;p&gt;以下是生成的目录结构：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;blog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;              &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;存放输入的源文件&lt;/span&gt;
-&lt;span class="err"&gt;│&lt;/span&gt;   &lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;存放手工创建的静态页面&lt;/span&gt;
-&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;               &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;生成的输出文件&lt;/span&gt;
-&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;develop_server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;方便开启测试服务器&lt;/span&gt;
-&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;Makefile&lt;/span&gt;             &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;方便管理博客的&lt;/span&gt;&lt;span class="n"&gt;Makefile&lt;/span&gt;
-&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;pelicanconf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;       &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;主配置文件&lt;/span&gt;
-&lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="n"&gt;publishconf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;       &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;主发布文件，可删除&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;blog/
+├── content              # 存放输入的源文件
+│   └── (pages)          # 存放手工创建的静态页面
+├── output               # 生成的输出文件
+├── develop_server.sh    # 方便开启测试服务器
+├── Makefile             # 方便管理博客的Makefile
+├── pelicanconf.py       # 主配置文件
+└── publishconf.py       # 主发布文件，可删除
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1007,20 +1007,20 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 
 
 &lt;p&gt;写完后，执行以下命令&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt;
-&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;serve&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make html
+make serve
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;即可在本机&lt;a href="http://127.0.0.1:8000"&gt;http://127.0.0.1:8000&lt;/a&gt;看到效果。接下来就是上传至github生效了，我创建了github文件夹用来保存需上传至github的文件，具体命令如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt;
-&lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rf&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/brantxiong/brantxiong.github.io.git&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Refresh&lt;/span&gt; &lt;span class="n"&gt;Blog&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd github
+rm -rf *
+cp -r ../output/* .
+git init
+git remote add origin https://github.com/brantxiong/brantxiong.github.io.git
+git add .
+git commit -m &amp;#39;Refresh Blog&amp;#39;
+git push origin master --force
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1028,14 +1028,14 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 &lt;hr /&gt;
 &lt;h4&gt;挑选主题&lt;/h4&gt;
 &lt;p&gt;安装主题，比如tuxlite_tbs：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/getpelican/pelican-themes.git&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt;
-&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;tuxlite_tbs&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/getpelican/pelican-themes.git
+cd pelican-themes
+pelican-themes -i tuxlite_tbs
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;选择主题，在pelicanconf.py中添加&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;tuxlite_tbs&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;THEME = &amp;#39;tuxlite_tbs&amp;#39;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1046,7 +1046,7 @@ stop &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 &lt;p&gt;改掉err红色提示：将&lt;code&gt;pelican-themes/tuxlite_tbs/static/pygments.css&lt;/code&gt;中的&lt;code&gt;.highlight .err { border: 1px solid #FF0000 } /* Error */&lt;/code&gt;改为：&lt;code&gt;.highlight .err { color: #666666 } /* Error */&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;删除work-break（会导致代码行号错乱。。。）：&lt;code&gt;pelican-themes/tuxlite_tbs/static/css/bootstrap.min.css&lt;/code&gt;中&lt;code&gt;word-break: break-all&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;改完后执行以下命令更新主题：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="n"&gt;tuxlite_tbs&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo pelican-themes -U tuxlite_tbs
 &lt;/pre&gt;&lt;/div&gt;
 
 

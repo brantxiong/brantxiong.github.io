@@ -18,6 +18,10 @@
     <link href="../../../../theme/local.css" rel="stylesheet">
     <link href="../../../../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -83,28 +87,28 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <li>耐心等待一段时间（不超过10分钟），登陆http://username.github.io，会发现自己的个人博客已经生成。</li>
 </ul>
 <h3>安装Pelican和Markdown</h3>
-<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">pelican</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">markdown</span>
+<div class="highlight"><pre>pip install pelican
+pip install markdown
 </pre></div>
 
 
 <h3>搭建骨架</h3>
-<div class="highlight"><pre><span class="n">mkdir</span> <span class="n">blog</span>
-<span class="n">cd</span> <span class="n">blog</span>
-<span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span>
+<div class="highlight"><pre>mkdir blog
+cd blog
+pelican-quickstart
 </pre></div>
 
 
 <p>根据提示一步步输入相应的配置项，不知道如何设置的接受默认即可，后续可以通过编辑pelicanconf.py文件更改配置)</p>
 <p>以下是生成的目录结构：</p>
-<div class="highlight"><pre><span class="n">blog</span><span class="o">/</span>
-<span class="err">├──</span> <span class="n">content</span>              <span class="err">#</span> <span class="err">存放输入的源文件</span>
-<span class="err">│</span>   <span class="err">└──</span> <span class="p">(</span><span class="n">pages</span><span class="p">)</span>          <span class="err">#</span> <span class="err">存放手工创建的静态页面</span>
-<span class="err">├──</span> <span class="n">output</span>               <span class="err">#</span> <span class="err">生成的输出文件</span>
-<span class="err">├──</span> <span class="n">develop_server</span><span class="p">.</span><span class="n">sh</span>    <span class="err">#</span> <span class="err">方便开启测试服务器</span>
-<span class="err">├──</span> <span class="n">Makefile</span>             <span class="err">#</span> <span class="err">方便管理博客的</span><span class="n">Makefile</span>
-<span class="err">├──</span> <span class="n">pelicanconf</span><span class="p">.</span><span class="n">py</span>       <span class="err">#</span> <span class="err">主配置文件</span>
-<span class="err">└──</span> <span class="n">publishconf</span><span class="p">.</span><span class="n">py</span>       <span class="err">#</span> <span class="err">主发布文件，可删除</span>
+<div class="highlight"><pre>blog/
+├── content              # 存放输入的源文件
+│   └── (pages)          # 存放手工创建的静态页面
+├── output               # 生成的输出文件
+├── develop_server.sh    # 方便开启测试服务器
+├── Makefile             # 方便管理博客的Makefile
+├── pelicanconf.py       # 主配置文件
+└── publishconf.py       # 主发布文件，可删除
 </pre></div>
 
 
@@ -120,20 +124,20 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 
 
 <p>写完后，执行以下命令</p>
-<div class="highlight"><pre><span class="n">make</span> <span class="n">html</span>
-<span class="n">make</span> <span class="n">serve</span>
+<div class="highlight"><pre>make html
+make serve
 </pre></div>
 
 
 <p>即可在本机<a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>看到效果。接下来就是上传至github生效了，我创建了github文件夹用来保存需上传至github的文件，具体命令如下：</p>
-<div class="highlight"><pre><span class="n">cd</span> <span class="n">github</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">*</span>
-<span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="p">..</span><span class="o">/</span><span class="n">output</span><span class="o">/*</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">init</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/brantxiong/brantxiong.github.io.git</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">Refresh</span> <span class="n">Blog</span><span class="err">&#39;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span> <span class="o">--</span><span class="n">force</span>
+<div class="highlight"><pre>cd github
+rm -rf *
+cp -r ../output/* .
+git init
+git remote add origin https://github.com/brantxiong/brantxiong.github.io.git
+git add .
+git commit -m &#39;Refresh Blog&#39;
+git push origin master --force
 </pre></div>
 
 
@@ -141,14 +145,14 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <hr />
 <h4>挑选主题</h4>
 <p>安装主题，比如tuxlite_tbs：</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/getpelican/pelican-themes.git</span>
-<span class="n">cd</span> <span class="n">pelican</span><span class="o">-</span><span class="n">themes</span>
-<span class="n">pelican</span><span class="o">-</span><span class="n">themes</span> <span class="o">-</span><span class="n">i</span> <span class="n">tuxlite_tbs</span>
+<div class="highlight"><pre>git clone https://github.com/getpelican/pelican-themes.git
+cd pelican-themes
+pelican-themes -i tuxlite_tbs
 </pre></div>
 
 
 <p>选择主题，在pelicanconf.py中添加</p>
-<div class="highlight"><pre><span class="n">THEME</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">tuxlite_tbs</span><span class="err">&#39;</span>
+<div class="highlight"><pre>THEME = &#39;tuxlite_tbs&#39;
 </pre></div>
 
 
@@ -159,7 +163,7 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <p>改掉err红色提示：将<code>pelican-themes/tuxlite_tbs/static/pygments.css</code>中的<code>.highlight .err { border: 1px solid #FF0000 } /* Error */</code>改为：<code>.highlight .err { color: #666666 } /* Error */</code></p>
 <p>删除work-break（会导致代码行号错乱。。。）：<code>pelican-themes/tuxlite_tbs/static/css/bootstrap.min.css</code>中<code>word-break: break-all</code></p>
 <p>改完后执行以下命令更新主题：</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">pelican</span><span class="o">-</span><span class="n">themes</span> <span class="o">-</span><span class="n">U</span> <span class="n">tuxlite_tbs</span>
+<div class="highlight"><pre>sudo pelican-themes -U tuxlite_tbs
 </pre></div>
 
 
@@ -277,8 +281,12 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../../../../archives.html">Archives</a>
                 <li><a href="../../../../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -335,14 +343,14 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

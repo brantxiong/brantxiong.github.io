@@ -18,6 +18,10 @@
     <link href="../theme/local.css" rel="stylesheet">
     <link href="../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -69,18 +73,18 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
         
         <div><p>本文主要介绍Memcached和Redisd的使用基础</p>
 <h3>Memcached安装和使用</h3>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">memcached</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">php</span><span class="o">-</span><span class="n">pecl</span><span class="o">-</span><span class="n">memcache</span>
-<span class="n">memcached</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">11211</span> <span class="o">-</span><span class="n">u</span> <span class="n">memcached</span> <span class="o">-</span><span class="n">m</span> <span class="mi">64</span> <span class="o">-</span><span class="n">c</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">P</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">memcached</span><span class="o">/</span><span class="n">memcached</span><span class="p">.</span><span class="n">pid</span>
+<div class="highlight"><pre>sudo apt-get install memcached
+sudo apt-get install php-pecl-memcache
+memcached -d -p 11211 -u memcached -m 64 -c 1024 -P /var/run/memcached/memcached.pid
 </pre></div>
 
 
 <p>参数说明：</p>
-<div class="highlight"><pre><span class="o">-</span><span class="n">d</span> <span class="err">启动一个守护进程</span>
-<span class="o">-</span><span class="n">p</span> <span class="err">端口</span>
-<span class="o">-</span><span class="n">m</span> <span class="err">分配的内存是</span><span class="n">M</span>
-<span class="o">-</span><span class="n">c</span> <span class="err">最大运行并发数</span>
-<span class="o">-</span><span class="n">P</span> <span class="n">memcache</span><span class="err">的</span><span class="n">pid</span>
+<div class="highlight"><pre>-d 启动一个守护进程
+-p 端口
+-m 分配的内存是M
+-c 最大运行并发数
+-P memcache的pid
 </pre></div>
 
 
@@ -99,23 +103,23 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 
 
 <p>登陆命令：</p>
-<div class="highlight"><pre><span class="n">printf</span> <span class="s">&quot;stats</span><span class="se">\r\n</span><span class="s">&quot;</span> <span class="o">|</span> <span class="n">nc</span> <span class="mf">127.0.0.1</span> <span class="mi">11211</span>
-<span class="n">telnet</span> <span class="n">localhost</span> <span class="mi">11211</span> <span class="n">stats</span> <span class="n">quit</span><span class="err">退出</span>
+<div class="highlight"><pre>printf &quot;stats\r\n&quot; | nc 127.0.0.1 11211
+telnet localhost 11211 stats quit退出
 </pre></div>
 
 
 <h3>Redis使用</h3>
 <p>Redis的配置文件 端口6379
 <code>/etc/redis.conf</code></p>
-<div class="highlight"><pre><span class="err">启动</span><span class="n">Redis</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="n">conf</span>
-<span class="err">插入一个值</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">set</span> <span class="n">test</span> <span class="s">&quot;phper.yang&quot;</span>
-<span class="err">获取键值</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">get</span> <span class="n">test</span>
-<span class="err">关闭</span><span class="n">Redis</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">shutdown</span> <span class="err">关闭所有</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6397</span> <span class="n">shutdown</span>
+<div class="highlight"><pre>启动Redis
+redis-server /etc/redis.conf
+插入一个值
+redis-cli set test &quot;phper.yang&quot;
+获取键值
+redis-cli get test
+关闭Redis
+redis-cli shutdown 关闭所有
+redis-cli -p 6397 shutdown
 </pre></div>
 
 
@@ -130,64 +134,64 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 
 <p>下面是一个redis的类
 Redis Class使用:</p>
-<div class="highlight"><pre><span class="err">$</span><span class="n">conf</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
-    <span class="err">&#39;</span><span class="n">sc</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="nb">true</span><span class="p">,</span> <span class="c1">//是否开启主从，需要Redis 配置文件配置好</span>
-    <span class="err">&#39;</span><span class="n">servers</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-        <span class="err">&#39;</span><span class="n">master</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span> <span class="c1">//主写</span>
-            <span class="err">&#39;</span><span class="n">host</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="err">&#39;</span><span class="mf">127.0.0.1</span><span class="err">&#39;</span><span class="p">,</span>
-            <span class="err">&#39;</span><span class="n">port</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">63888</span><span class="p">,</span>
-            <span class="err">&#39;</span><span class="n">timeout</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-            <span class="err">&#39;</span><span class="n">auth</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">123456</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="err">&#39;</span><span class="n">slave</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-            <span class="n">array</span><span class="p">(</span> <span class="c1">//从读</span>
-                <span class="err">&#39;</span><span class="n">host</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="err">&#39;</span><span class="mf">127.0.0.1</span><span class="err">&#39;</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">port</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">63791</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">timeout</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">auth</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">123456</span><span class="p">,</span>
-            <span class="p">),</span>
-            <span class="n">array</span><span class="p">(</span> <span class="c1">//从读</span>
-                <span class="err">&#39;</span><span class="n">host</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="err">&#39;</span><span class="mf">127.0.0.1</span><span class="err">&#39;</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">port</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">63792</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">timeout</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-                <span class="err">&#39;</span><span class="n">auth</span><span class="err">&#39;</span> <span class="o">=&gt;</span> <span class="mi">123456</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">),</span>
-    <span class="p">)</span>
-<span class="p">);</span>
+<div class="highlight"><pre><span class="p">$</span><span class="nv">conf</span><span class="x"> = array(</span>
+<span class="x">    &#39;sc&#39; =&gt; true, //是否开启主从，需要Redis 配置文件配置好</span>
+<span class="x">    &#39;servers&#39; =&gt; array(</span>
+<span class="x">        &#39;master&#39; =&gt; array( //主写</span>
+<span class="x">            &#39;host&#39; =&gt; &#39;127.0.0.1&#39;,</span>
+<span class="x">            &#39;port&#39; =&gt; 63888,</span>
+<span class="x">            &#39;timeout&#39; =&gt; 10,</span>
+<span class="x">            &#39;auth&#39; =&gt; 123456,</span>
+<span class="x">        ),</span>
+<span class="x">        &#39;slave&#39; =&gt; array(</span>
+<span class="x">            array( //从读</span>
+<span class="x">                &#39;host&#39; =&gt; &#39;127.0.0.1&#39;,</span>
+<span class="x">                &#39;port&#39; =&gt; 63791,</span>
+<span class="x">                &#39;timeout&#39; =&gt; 10,</span>
+<span class="x">                &#39;auth&#39; =&gt; 123456,</span>
+<span class="x">            ),</span>
+<span class="x">            array( //从读</span>
+<span class="x">                &#39;host&#39; =&gt; &#39;127.0.0.1&#39;,</span>
+<span class="x">                &#39;port&#39; =&gt; 63792,</span>
+<span class="x">                &#39;timeout&#39; =&gt; 10,</span>
+<span class="x">                &#39;auth&#39; =&gt; 123456,</span>
+<span class="x">            )</span>
+<span class="x">        ),</span>
+<span class="x">    )</span>
+<span class="x">);</span>
 </pre></div>
 
 
 <p>关于配置Redis的主从配置说明:</p>
-<div class="highlight"><pre><span class="n">m</span><span class="p">.</span><span class="n">conf</span>  <span class="n">port</span> <span class="mi">6378</span>
-<span class="o">~/</span><span class="n">bin</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">h</span> <span class="mf">127.0.0.1</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6378</span>
-<span class="n">s</span><span class="p">.</span><span class="n">conf</span><span class="err">：</span><span class="n">port</span><span class="o">:</span> <span class="mi">6379</span> <span class="n">slaveof</span> <span class="mf">127.0.0.1</span> <span class="mi">6379</span>
-<span class="o">~/</span><span class="n">bin</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">h</span> <span class="mf">127.0.0.1</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6379</span>
-<span class="n">RDB</span><span class="p">(</span><span class="n">bgsave</span> <span class="err">命令</span><span class="p">)</span>
+<div class="highlight"><pre>m.conf  port 6378
+~/bin/redis-cli -h 127.0.0.1 -p 6378
+s.conf：port: 6379 slaveof 127.0.0.1 6379
+~/bin/redis-cli -h 127.0.0.1 -p 6379
+RDB(bgsave 命令)
 </pre></div>
 
 
 <p>配置文件<code>redis.conf</code>：</p>
-<div class="highlight"><pre><span class="n">save</span> <span class="mi">900</span> <span class="mi">1</span>  <span class="err">#</span><span class="mi">900</span><span class="err">秒内如果超过</span><span class="mi">1</span><span class="err">个</span><span class="n">key</span><span class="err">被修改，则发起快照保存</span>
-<span class="n">save</span> <span class="mi">300</span> <span class="mi">10</span> <span class="err">#</span><span class="mi">300</span><span class="err">秒内容如超过</span><span class="mi">10</span><span class="err">个</span><span class="n">key</span><span class="err">被修改，则发起快照保存</span>
-<span class="n">save</span> <span class="mi">60</span> <span class="mi">10000</span>
-<span class="n">save</span> <span class="o">/</span><span class="n">bgsave</span>
-<span class="o">~/</span><span class="p">.</span><span class="n">jumbo</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dump</span><span class="p">.</span><span class="n">rdb</span>
-<span class="n">AOF</span><span class="p">(</span><span class="n">bgrewriteaof</span><span class="err">命令</span><span class="p">)</span>
-<span class="n">appendonly</span> <span class="n">yes</span>  <span class="c1">//启用aof持久化方式</span>
-<span class="cp"># appendfsync always  </span><span class="c1">//每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用</span>
-<span class="n">appendfsync</span> <span class="n">everysec</span> <span class="c1">//每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐</span>
-<span class="cp"># appendfsync no    </span><span class="c1">//完全依赖os，性能最好,持久化没保证</span>
+<div class="highlight"><pre>save 900 1  #900秒内如果超过1个key被修改，则发起快照保存
+save 300 10 #300秒内容如超过10个key被修改，则发起快照保存
+save 60 10000
+save /bgsave
+~/.jumbo/bin/dump.rdb
+AOF(bgrewriteaof命令)
+appendonly yes  //启用aof持久化方式
+# appendfsync always  //每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用
+appendfsync everysec //每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐
+# appendfsync no    //完全依赖os，性能最好,持久化没保证
 </pre></div>
 
 
 <p>php使用：</p>
-<div class="highlight"><pre><span class="err">$</span><span class="n">r</span> <span class="o">=</span> <span class="err">$</span><span class="n">redis</span><span class="o">-&gt;</span><span class="n">getRedis</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">info</span><span class="p">();</span> <span class="c1">//写数据</span>
-<span class="n">print_r</span><span class="p">(</span><span class="s">&quot;主&quot;</span> <span class="p">.</span> <span class="err">$</span><span class="n">r</span><span class="p">[</span><span class="err">&#39;</span><span class="n">tcp_port</span><span class="err">&#39;</span><span class="p">]);</span>
-<span class="err">$</span><span class="n">redis</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="err">$</span><span class="n">r</span> <span class="o">=</span> <span class="err">$</span><span class="n">redis</span><span class="o">-&gt;</span><span class="n">getRedis</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">info</span><span class="p">();</span> <span class="c1">//读数据</span>
-<span class="n">print_r</span><span class="p">(</span><span class="s">&quot;从&quot;</span> <span class="p">.</span> <span class="err">$</span><span class="n">r</span><span class="p">[</span><span class="err">&#39;</span><span class="n">tcp_port</span><span class="err">&#39;</span><span class="p">]);</span>
-<span class="n">print_r</span><span class="p">(</span><span class="err">$</span><span class="n">redis</span><span class="o">-&gt;</span><span class="n">getRedis</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="p">));</span>
+<div class="highlight"><pre><span class="p">$</span><span class="nv">r</span><span class="x"> = </span><span class="p">$</span><span class="nv">redis</span><span class="x">-&gt;getRedis()-&gt;info(); //写数据</span>
+<span class="x">print_r(&quot;主&quot; . </span><span class="p">$</span><span class="nv">r</span><span class="x">[&#39;tcp_port&#39;]);</span>
+<span class="p">$</span><span class="nv">redis</span><span class="x">-&gt;set(&#39;id&#39;, 100);</span>
+<span class="p">$</span><span class="nv">r</span><span class="x"> = </span><span class="p">$</span><span class="nv">redis</span><span class="x">-&gt;getRedis(false)-&gt;info(); //读数据</span>
+<span class="x">print_r(&quot;从&quot; . </span><span class="p">$</span><span class="nv">r</span><span class="x">[&#39;tcp_port&#39;]);</span>
+<span class="x">print_r(</span><span class="p">$</span><span class="nv">redis</span><span class="x">-&gt;getRedis(false)-&gt;get(&#39;id&#39;));</span>
 </pre></div></div>
         <hr />
     </div>
@@ -216,8 +220,12 @@ Redis Class使用:</p>
             
                 <li><a href="../archives.html">Archives</a>
                 <li><a href="../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -274,14 +282,14 @@ Redis Class使用:</p>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

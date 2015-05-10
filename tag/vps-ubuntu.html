@@ -18,6 +18,10 @@
     <link href="../theme/local.css" rel="stylesheet">
     <link href="../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -78,203 +82,203 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 - it prevents the user making any system-destroying mistakes
 - it stores all the commands run with sudo to a file where can be reviewed later if needed</p>
 <p>增加用户</p>
-<div class="highlight"><pre>   <span class="n">sudo</span> <span class="n">adduser</span> <span class="n">work</span>
+<div class="highlight"><pre>   sudo adduser work
 </pre></div>
 
 
 <p>增加sudo权限</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">visudo</span>
+<div class="highlight"><pre>sudo /usr/sbin/visudo
 
-<span class="cp"># User privilege specification</span>
-<span class="n">rootALL</span><span class="o">=</span><span class="p">(</span><span class="n">ALL</span><span class="o">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">ALL</span>
-<span class="n">workALL</span><span class="o">=</span><span class="p">(</span><span class="n">ALL</span><span class="o">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">ALL</span>
+# User privilege specification
+rootALL=(ALL:ALL) ALL
+workALL=(ALL:ALL) ALL
 </pre></div>
 
 
 <p>删除用户</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">userdel</span> <span class="n">newuser</span>
-<span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">newuser</span>
+<div class="highlight"><pre>sudo userdel newuser
+sudo rm -rf /home/newuser
 </pre></div>
 
 
 <h3>安装tmux 1.8</h3>
 <p>ubuntu Lucid源中的tmux版本过老，为此，我们手动安装tmux 1.8，</p>
 <p>安装基础编译环境</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
+<div class="highlight"><pre>sudo apt-get install build-essential
 </pre></div>
 
 
 <p>安装依赖包</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz</span>
-<span class="n">tar</span> <span class="n">xzf</span> <span class="n">libevent</span><span class="o">-</span><span class="mf">2.0.21</span><span class="o">-</span><span class="n">stable</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="n">libevent</span><span class="o">-</span><span class="mf">2.0.21</span><span class="o">-</span><span class="n">stable</span>
-<span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ncurses</span><span class="o">-</span><span class="n">dev</span>
+<div class="highlight"><pre>wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+tar xzf libevent-2.0.21-stable.tar.gz
+cd libevent-2.0.21-stable
+configure &amp;&amp; make &amp;&amp; sudo make install
+sudo apt-get install ncurses-dev
 </pre></div>
 
 
 <p>安装tmux 1.8</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//downloads.sourceforge.net/tmux/tmux-1.8.tar.gz</span>
-<span class="n">tar</span> <span class="n">xzf</span> <span class="n">tmux</span><span class="o">-</span><span class="mf">1.8</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="n">tmux</span><span class="o">-</span><span class="mf">1.8</span>
-<span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="n">LDFLAGS</span><span class="o">=</span><span class="s">&quot;-Wl,-rpath /usr/local/lib&quot;</span>
-<span class="n">make</span>
-<span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+<div class="highlight"><pre>wget http://downloads.sourceforge.net/tmux/tmux-1.8.tar.gz
+tar xzf tmux-1.8.tar.gz
+cd tmux-1.8
+./configure LDFLAGS=&quot;-Wl,-rpath /usr/local/lib&quot;
+make
+sudo make install
 </pre></div>
 
 
 <p>非root运行tmux技巧</p>
-<div class="highlight"><pre><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;export LD_LIBRARY_PATH=~/tool/bin/lib:$LD_LIBRARY_PATH &amp;&amp; ~/tool/bin/bin/tmux a || ~/tool/bin/bin/tmux -f ~/tool/conf/tmux.conf&quot;</span>
+<div class="highlight"><pre><span class="x">bash -c &quot;export LD_LIBRARY_PATH=~/tool/bin/lib:</span><span class="p">$</span><span class="nv">LD_LIBRARY_PATH</span><span class="x"> &amp;&amp; ~/tool/bin/bin/tmux a || ~/tool/bin/bin/tmux -f ~/tool/conf/tmux.conf&quot;</span>
 </pre></div>
 
 
 <h4>tmux 配置文件</h4>
 <hr />
-<div class="highlight"><pre><span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">prefix</span> <span class="o">^</span><span class="n">a</span>
-<span class="n">unbind</span> <span class="o">^</span><span class="n">b</span>
-<span class="n">bind</span> <span class="n">a</span> <span class="n">send</span><span class="o">-</span><span class="n">prefix</span>
-<span class="n">unbind</span> <span class="sc">&#39;&quot;&#39;</span>
-<span class="n">bind</span> <span class="o">-</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span> <span class="err">#</span> <span class="n">horizontal</span> <span class="n">split</span>
-<span class="n">unbind</span> <span class="o">%</span>
-<span class="n">bind</span> <span class="o">|</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span> <span class="err">#</span> <span class="n">vertical</span> <span class="n">split</span>
-<span class="n">bind</span> <span class="n">k</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">U</span> <span class="err">#</span> <span class="n">select</span> <span class="n">upper</span> <span class="n">pane</span>
-<span class="n">bind</span> <span class="n">j</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">D</span> <span class="err">#</span> <span class="n">select</span> <span class="n">lower</span> <span class="n">pane</span>
-<span class="n">bind</span> <span class="n">h</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">L</span> <span class="err">#</span> <span class="n">select</span> <span class="n">left</span> <span class="n">pane</span>
-<span class="n">bind</span> <span class="n">l</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">R</span> <span class="err">#</span> <span class="n">select</span> <span class="n">right</span> <span class="n">pane</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">k</span> <span class="n">resizep</span> <span class="o">-</span><span class="n">U</span> <span class="mi">10</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">j</span> <span class="n">resizep</span> <span class="o">-</span><span class="n">D</span> <span class="mi">10</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">h</span> <span class="n">resizep</span> <span class="o">-</span><span class="n">L</span> <span class="mi">10</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">l</span> <span class="n">resizep</span> <span class="o">-</span><span class="n">R</span> <span class="mi">10</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">u</span> <span class="n">swapp</span> <span class="o">-</span><span class="n">U</span> <span class="err">#</span> <span class="n">swap</span> <span class="n">with</span> <span class="n">upper</span> <span class="n">pane</span>
-<span class="n">bind</span> <span class="o">^</span><span class="n">d</span> <span class="n">swapp</span> <span class="o">-</span><span class="n">D</span> <span class="err">#</span> <span class="n">swap</span> <span class="n">with</span> <span class="n">lower</span> <span class="n">pane</span>
+<div class="highlight"><pre>set -g prefix ^a
+unbind ^b
+bind a send-prefix
+unbind &#39;&quot;&#39;
+bind - splitw -v # horizontal split
+unbind %
+bind | splitw -h # vertical split
+bind k selectp -U # select upper pane
+bind j selectp -D # select lower pane
+bind h selectp -L # select left pane
+bind l selectp -R # select right pane
+bind ^k resizep -U 10
+bind ^j resizep -D 10
+bind ^h resizep -L 10
+bind ^l resizep -R 10
+bind ^u swapp -U # swap with upper pane
+bind ^d swapp -D # swap with lower pane
 
-<span class="cp"># THEME</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">bg</span> <span class="n">black</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">fg</span> <span class="n">white</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">window</span><span class="o">-</span><span class="n">status</span><span class="o">-</span><span class="n">current</span><span class="o">-</span><span class="n">bg</span> <span class="n">white</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">window</span><span class="o">-</span><span class="n">status</span><span class="o">-</span><span class="n">current</span><span class="o">-</span><span class="n">fg</span> <span class="n">black</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">window</span><span class="o">-</span><span class="n">status</span><span class="o">-</span><span class="n">current</span><span class="o">-</span><span class="n">attr</span> <span class="n">bold</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">interval</span> <span class="mi">60</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span><span class="o">-</span><span class="n">length</span> <span class="mi">30</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span> <span class="err">&#39;#</span><span class="p">[</span><span class="n">fg</span><span class="o">=</span><span class="n">green</span><span class="p">](</span><span class="err">#</span><span class="n">S</span><span class="p">)</span> <span class="err">#</span><span class="p">(</span><span class="n">whoami</span><span class="p">)</span><span class="err">&#39;</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span> <span class="s">&quot;#[fg=green]#(date)#[default] #[fg=green]#(cut -d &#39; &#39; -f 1-3 /proc/loadavg)#[default]&quot;</span>
+# THEME
+set -g status-bg black
+set -g status-fg white
+set -g window-status-current-bg white
+set -g window-status-current-fg black
+set -g window-status-current-attr bold
+set -g status-interval 60
+set -g status-left-length 30
+set -g status-left &#39;#[fg=green](#S) #(whoami)&#39;
+set -g status-right &quot;#[fg=green]#(date)#[default] #[fg=green]#(cut -d &#39; &#39; -f 1-3 /proc/loadavg)#[default]&quot;
 
-<span class="n">setw</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
-<span class="n">setw</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">mouse</span> <span class="n">off</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">terminal</span><span class="o">-</span><span class="n">overrides</span> <span class="err">&#39;</span><span class="n">xterm</span><span class="o">*:</span><span class="n">smcup</span><span class="err">@</span><span class="o">:</span><span class="n">rmcup</span><span class="err">@&#39;</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">base</span><span class="o">-</span><span class="n">index</span> <span class="mi">1</span>
-<span class="cp">#set -s escape-time 0</span>
-<span class="n">setw</span> <span class="o">-</span><span class="n">g</span> <span class="n">aggressive</span><span class="o">-</span><span class="n">resize</span> <span class="n">on</span>
+setw -g mode-keys vi
+setw -g mode-mouse off
+set -g terminal-overrides &#39;xterm*:smcup@:rmcup@&#39;
+set -g base-index 1
+#set -s escape-time 0
+setw -g aggressive-resize on
 
-<span class="n">unbind</span> <span class="n">r</span>
-<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/</span><span class="p">.</span><span class="n">tmux</span><span class="p">.</span><span class="n">conf</span>
+unbind r
+bind r source-file ~/.tmux.conf
 
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">history</span><span class="o">-</span><span class="n">limit</span> <span class="mi">25000</span>
+set -g history-limit 25000
 
-<span class="cp">#T-Mobile G2 workarounds</span>
-<span class="n">bind</span> <span class="n">Q</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F1</span>
-<span class="n">bind</span> <span class="n">W</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F2</span>
-<span class="n">bind</span> <span class="n">E</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F3</span>
-<span class="n">bind</span> <span class="n">R</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F4</span>
-<span class="n">bind</span> <span class="n">T</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F5</span>
-<span class="n">bind</span> <span class="n">Y</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F6</span>
-<span class="n">bind</span> <span class="n">U</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F7</span>
-<span class="n">bind</span> <span class="n">I</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F8</span>
-<span class="n">bind</span> <span class="n">O</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F9</span>
-<span class="n">bind</span> <span class="n">P</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F10</span>
-<span class="n">bind</span> <span class="n">A</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F11</span>
-<span class="n">bind</span> <span class="n">S</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">F12</span>
+#T-Mobile G2 workarounds
+bind Q send-keys F1
+bind W send-keys F2
+bind E send-keys F3
+bind R send-keys F4
+bind T send-keys F5
+bind Y send-keys F6
+bind U send-keys F7
+bind I send-keys F8
+bind O send-keys F9
+bind P send-keys F10
+bind A send-keys F11
+bind S send-keys F12
 
-<span class="n">bind</span> <span class="o">/</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="o">|</span>
+bind / send-keys |
 
-<span class="n">unbind</span> <span class="n">t</span>
-<span class="n">bind</span> <span class="n">t</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">Tab</span>
+unbind t
+bind t send-keys Tab
 
-<span class="n">unbind</span> <span class="n">N</span>
-<span class="n">bind</span> <span class="n">N</span> <span class="n">clock</span><span class="o">-</span><span class="n">mode</span>
+unbind N
+bind N clock-mode
 
-<span class="n">unbind</span> <span class="err">@</span>
-<span class="n">bind</span> <span class="err">@</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">Escape</span>
+unbind @
+bind @ send-keys Escape
 
-<span class="n">unbind</span> <span class="n">H</span>
-<span class="n">bind</span> <span class="n">H</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">Home</span>
+unbind H
+bind H send-keys Home
 
-<span class="n">unbind</span> <span class="n">L</span>
-<span class="n">bind</span> <span class="n">L</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">End</span>
+unbind L
+bind L send-keys End
 
-<span class="n">unbind</span> <span class="n">J</span>
-<span class="n">bind</span> <span class="n">J</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">PageDown</span>
+unbind J
+bind J send-keys PageDown
 
-<span class="n">unbind</span> <span class="n">K</span>
-<span class="n">bind</span> <span class="n">K</span> <span class="n">send</span><span class="o">-</span><span class="n">keys</span> <span class="n">PageUp</span>
+unbind K
+bind K send-keys PageUp
 
-<span class="cp">#Alt-n window switching</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">2</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">3</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">4</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">5</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">6</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">7</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">unbind</span> <span class="n">M</span><span class="o">-</span><span class="mi">9</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">1</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">2</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">2</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">3</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">3</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">4</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">4</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">5</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">5</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">6</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">6</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">7</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">7</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">8</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">8</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="n">M</span><span class="o">-</span><span class="mi">9</span> <span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">t</span> <span class="o">:</span><span class="mi">9</span>
+#Alt-n window switching
+unbind M-1
+unbind M-2
+unbind M-3
+unbind M-4
+unbind M-5
+unbind M-6
+unbind M-7
+unbind M-8
+unbind M-9
+bind-key -n M-1 select-window -t :1
+bind-key -n M-2 select-window -t :2
+bind-key -n M-3 select-window -t :3
+bind-key -n M-4 select-window -t :4
+bind-key -n M-5 select-window -t :5
+bind-key -n M-6 select-window -t :6
+bind-key -n M-7 select-window -t :7
+bind-key -n M-8 select-window -t :8
+bind-key -n M-9 select-window -t :9
 
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="o">^</span><span class="n">PageDown</span> <span class="n">next</span><span class="o">-</span><span class="n">window</span>
-<span class="n">bind</span><span class="o">-</span><span class="n">key</span> <span class="o">-</span><span class="n">n</span> <span class="o">^</span><span class="n">PageUp</span> <span class="n">previous</span><span class="o">-</span><span class="n">window</span>
+bind-key -n ^PageDown next-window
+bind-key -n ^PageUp previous-window
 
-<span class="cp">#set -g default-terminal &quot;screen-256color&quot;</span>
-<span class="cp">#For compatibility</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="k">default</span><span class="o">-</span><span class="n">terminal</span> <span class="s">&quot;xterm-color&quot;</span>
+#set -g default-terminal &quot;screen-256color&quot;
+#For compatibility
+set -g default-terminal &quot;xterm-color&quot;
 
-<span class="cp">##CLIPBOARD selection integration</span>
-<span class="cp">##Requires prefix key before the command key</span>
-<span class="cp">#Copy tmux paste buffer to CLIPBOARD</span>
-<span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">c</span> <span class="n">run</span> <span class="s">&quot;tmux show-buffer | xclip -i -selection clipboard&quot;</span>
-<span class="cp">#Copy CLIPBOARD to tmux paste buffer and paste tmux paste buffer</span>
-<span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">v</span> <span class="n">run</span> <span class="s">&quot;tmux set-buffer </span><span class="se">\&quot;</span><span class="s">$(xclip -o -selection clipboard)</span><span class="se">\&quot;</span><span class="s">; tmux paste-buffer&quot;</span>
+##CLIPBOARD selection integration
+##Requires prefix key before the command key
+#Copy tmux paste buffer to CLIPBOARD
+bind C-c run &quot;tmux show-buffer | xclip -i -selection clipboard&quot;
+#Copy CLIPBOARD to tmux paste buffer and paste tmux paste buffer
+bind C-v run &quot;tmux set-buffer \&quot;$(xclip -o -selection clipboard)\&quot;; tmux paste-buffer&quot;
 </pre></div>
 
 
 <h3>locale设置</h3>
 <p>查看locale</p>
-<div class="highlight"><pre><span class="cp"># 查看当前系统语言环境</span>
-<span class="n">locale</span>
-<span class="cp"># 查看系统内安装的locale</span>
-<span class="n">locale</span> <span class="o">-</span><span class="n">a</span>
+<div class="highlight"><pre># 查看当前系统语言环境
+locale
+# 查看系统内安装的locale
+locale -a
 </pre></div>
 
 
 <p>安装zh_CN.utf8</p>
-<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">locales</span>
-<span class="n">sudo</span> <span class="p">.</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">language</span><span class="o">-</span><span class="n">pack</span> <span class="n">zh_CN</span>
+<div class="highlight"><pre>cd /usr/share/locales
+sudo ./install-language-pack zh_CN
 </pre></div>
 
 
 <p>locale配置： <code>/etc/default/locale</code></p>
-<div class="highlight"><pre><span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LANGUAGE</span><span class="o">=</span>
-<span class="n">LC_CTYPE</span><span class="o">=</span><span class="s">&quot;en_US.UTF-8&quot;</span>
-<span class="n">LC_NUMERIC</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_TIME</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_COLLATE</span><span class="o">=</span><span class="s">&quot;en_US.UTF-8&quot;</span>
-<span class="n">LC_MONETARY</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_MESSAGES</span><span class="o">=</span><span class="s">&quot;en_US.UTF-8&quot;</span>
-<span class="n">LC_PAPER</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_NAME</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_ADDRESS</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_TELEPHONE</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_MEASUREMENT</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_IDENTIFICATION</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">LC_ALL</span><span class="o">=</span>
+<div class="highlight"><pre>LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE=&quot;en_US.UTF-8&quot;
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+LC_COLLATE=&quot;en_US.UTF-8&quot;
+LC_MONETARY=zh_CN.UTF-8
+LC_MESSAGES=&quot;en_US.UTF-8&quot;
+LC_PAPER=zh_CN.UTF-8
+LC_NAME=zh_CN.UTF-8
+LC_ADDRESS=zh_CN.UTF-8
+LC_TELEPHONE=zh_CN.UTF-8
+LC_MEASUREMENT=zh_CN.UTF-8
+LC_IDENTIFICATION=zh_CN.UTF-8
+LC_ALL=
 </pre></div>
 
 
@@ -283,52 +287,52 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <p>The mosh-client binary must exist on the user's machine, and the mosh-server binary on the remote host.</p>
 <p>参考：<a href="http://mosh.mit.edu/">http://mosh.mit.edu/</a></p>
 <p>安装</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="o">:</span><span class="n">keithw</span><span class="o">/</span><span class="n">mosh</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">mosh</span>
+<div class="highlight"><pre>sudo add-apt-repository ppa:keithw/mosh
+sudo apt-get update
+sudo apt-get install mosh
 </pre></div>
 
 
 <p>防火墙配置</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="mi">1</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">60000</span><span class="o">:</span><span class="mi">61000</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<div class="highlight"><pre>sudo iptables -I INPUT 1 -p udp --dport 60000:61000 -j ACCEPT
 </pre></div>
 
 
 <p>mosh登陆</p>
-<div class="highlight"><pre><span class="n">mosh</span> <span class="n">work</span><span class="err">@</span><span class="mf">162.221.4.10</span>
+<div class="highlight"><pre><span class="n">mosh</span> <span class="n">work</span><span class="mf">@162.221.4.10</span>
 </pre></div>
 
 
 <h3>ftp server安装</h3>
 <p>安装ftp server</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">vsftpd</span>
+<div class="highlight"><pre>sudo apt-get install vsftpd
 </pre></div>
 
 
 <p>配置：<code>/etc/vsftpd.conf</code></p>
 <p>生效如下配置：</p>
-<div class="highlight"><pre><span class="n">chroot_local_user</span><span class="o">=</span><span class="n">YES</span>
-<span class="n">chroot_list_enable</span><span class="o">=</span><span class="n">YES</span>
-<span class="n">chroot_list_file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">vsftpd</span><span class="p">.</span><span class="n">chroot_list</span>
+<div class="highlight"><pre>chroot_local_user=YES
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
 </pre></div>
 
 
 <p>重启ftp</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vsftpd</span> <span class="n">restart</span>
+<div class="highlight"><pre>sudo /etc/init.d/vsftpd restart
 </pre></div>
 
 
 <h3>nginx 安装与配置</h3>
 <p>参考：<a href="http://wiki.nginx.org/Install">http://wiki.nginx.org/Install</a></p>
 <p>安装add-apt-repository</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">software</span><span class="o">-</span><span class="n">properties</span>
+<div class="highlight"><pre>sudo apt-get install python-software-properties
 </pre></div>
 
 
 <p>安装nginx</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="o">:</span><span class="n">nginx</span><span class="o">/</span><span class="n">stable</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nginx</span>
+<div class="highlight"><pre>sudo add-apt-repository ppa:nginx/stable
+sudo apt-get update
+sudo apt-get install nginx
 </pre></div>
 
 
@@ -336,20 +340,20 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 参考：<a href="http://blog.martinfjordvald.com/2010/07/nginx-primer">http://blog.martinfjordvald.com/2010/07/nginx-primer</a></p>
 <h3>php-fpm&amp;mysql 安装</h3>
 <p>增加ppa</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">add</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="o">:</span><span class="n">ondrej</span><span class="o">/</span><span class="n">php5</span><span class="o">-</span><span class="n">oldstable</span>
+<div class="highlight"><pre>sudo apt-add-repository ppa:ondrej/php5-oldstable
 </pre></div>
 
 
 <p>安装php组件</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">aptitude</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">php5</span><span class="o">-</span><span class="n">cli</span> <span class="n">php5</span><span class="o">-</span><span class="n">common</span> <span class="n">php5</span><span class="o">-</span><span class="n">mysql</span> <span class="n">php5</span><span class="o">-</span><span class="n">suhosin</span> <span class="n">php5</span><span class="o">-</span><span class="n">gd</span>
-<span class="n">sudo</span> <span class="n">aptitude</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">php5</span><span class="o">-</span><span class="n">fpm</span> <span class="n">php5</span><span class="o">-</span><span class="n">cgi</span> <span class="n">php</span><span class="o">-</span><span class="n">pear</span> <span class="n">php5</span><span class="o">-</span><span class="n">memcache</span> <span class="n">php</span><span class="o">-</span><span class="n">apc</span>
+<div class="highlight"><pre>sudo aptitude -y install php5-cli php5-common php5-mysql php5-suhosin php5-gd
+sudo aptitude -y install php5-fpm php5-cgi php-pear php5-memcache php-apc
 </pre></div>
 
 
 <h4>ubuntu 增加lib</h4>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ld</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">newlib</span><span class="p">.</span><span class="n">conf</span>
-<span class="cp"># Add the path to file and save it</span>
-<span class="n">sudo</span> <span class="n">ldconfig</span>
+<div class="highlight"><pre>sudo vim /etc/ld.so.conf.d/newlib.conf
+# Add the path to file and save it
+sudo ldconfig
 </pre></div>
 
 
@@ -382,8 +386,12 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../archives.html">Archives</a>
                 <li><a href="../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -440,14 +448,14 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

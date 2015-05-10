@@ -4,267 +4,267 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>http://brantxiong.github.io/index.html</loc>
-<lastmod>2015-01-04T23:09:59-00:00</lastmod>
+<loc>http://brantxiong.github.io/</loc>
+<lastmod>2015-05-10T23:15:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/archives.html</loc>
-<lastmod>2015-01-04T23:09:59-00:00</lastmod>
+<lastmod>2015-05-10T23:15:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tags.html</loc>
-<lastmod>2015-01-04T23:09:59-00:00</lastmod>
+<lastmod>2015-05-10T23:15:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/categories.html</loc>
-<lastmod>2015-01-04T23:09:59-00:00</lastmod>
+<lastmod>2015-05-10T23:15:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/about.html</loc>
-<lastmod>2014-02-16T00:00:00-00:00</lastmod>
+<lastmod>2014-02-16T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/10/19/xubuntushi-yong-zhi-lu.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/03/11/raid-10-cao-zuo-bu-zou-ji-lu.html</loc>
-<lastmod>2014-03-11T00:00:00-00:00</lastmod>
+<lastmod>2014-03-11T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/03/04/ubuntuxia-da-jian-web-svn.html</loc>
-<lastmod>2014-03-04T00:00:00-00:00</lastmod>
+<lastmod>2014-03-04T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/23/djangoxia-celeryde-shi-yong.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-02-23T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/22/li-yong-bitbucketjin-xing-teamwork.html</loc>
-<lastmod>2014-02-22T00:00:00-00:00</lastmod>
+<lastmod>2014-02-22T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/19/python_ana_url.html</loc>
-<lastmod>2014-02-19T00:00:00-00:00</lastmod>
+<lastmod>2014-02-19T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/18/tcpdump.html</loc>
-<lastmod>2014-02-18T00:00:00-00:00</lastmod>
+<lastmod>2014-02-18T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/17/memcached_and_redis_basic.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/17/tc_usage.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/17/vps_1.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/pages/2014/02/16/build_blog.html</loc>
-<lastmod>2014-02-16T00:00:00-00:00</lastmod>
+<lastmod>2014-02-16T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/category/tech.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/svn.html</loc>
-<lastmod>2014-03-04T00:00:00-00:00</lastmod>
+<lastmod>2014-03-04T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/pelican.html</loc>
-<lastmod>2014-02-16T00:00:00-00:00</lastmod>
+<lastmod>2014-02-16T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/bitbucket.html</loc>
-<lastmod>2014-02-22T00:00:00-00:00</lastmod>
+<lastmod>2014-02-22T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/git.html</loc>
-<lastmod>2014-02-22T00:00:00-00:00</lastmod>
+<lastmod>2014-02-22T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/raid.html</loc>
-<lastmod>2014-03-11T00:00:00-00:00</lastmod>
+<lastmod>2014-03-11T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/vps.html</loc>
-<lastmod>2014-03-04T00:00:00-00:00</lastmod>
+<lastmod>2014-03-04T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/celery.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-02-23T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/python.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-02-23T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/tcpdump.html</loc>
-<lastmod>2014-02-18T00:00:00-00:00</lastmod>
+<lastmod>2014-02-18T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/reids.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/ubuntu.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/django.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-02-23T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/blog.html</loc>
-<lastmod>2014-02-16T00:00:00-00:00</lastmod>
+<lastmod>2014-02-16T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/sed.html</loc>
-<lastmod>2014-02-19T00:00:00-00:00</lastmod>
+<lastmod>2014-02-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/teamwork.html</loc>
-<lastmod>2014-02-22T00:00:00-00:00</lastmod>
+<lastmod>2014-02-22T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/xubuntu.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/linux.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/memcached.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/tc.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/tag/vps-ubuntu.html</loc>
-<lastmod>2014-02-17T00:00:00-00:00</lastmod>
+<lastmod>2014-02-17T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://brantxiong.github.io/author/brant-xiong.html</loc>
-<lastmod>2014-10-19T00:00:00-00:00</lastmod>
+<lastmod>2014-10-19T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

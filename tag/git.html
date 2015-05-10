@@ -18,6 +18,10 @@
     <link href="../theme/local.css" rel="stylesheet">
     <link href="../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -74,21 +78,21 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 </blockquote>
 <h2>具体步骤</h2>
 <p>利用bitbucket完成teamwork和持续集成的流程如下：</p>
-<div class="highlight"><pre>                   <span class="o">+----------+</span>
-                   <span class="o">|</span> <span class="n">Develop</span>  <span class="o">|</span>
-                   <span class="o">+----+-----+</span>
-                        <span class="o">|</span>
-                        <span class="o">|</span> <span class="n">push</span> <span class="n">with</span> <span class="n">sourcetree</span>
-                        <span class="o">|</span>
-                   <span class="o">+----</span><span class="n">v</span><span class="o">-----+</span>
-                   <span class="o">|</span> <span class="n">Bitbucket</span><span class="o">|</span>
-                   <span class="o">+----+-----+</span>
-                        <span class="o">|</span>
-                        <span class="o">|</span> <span class="n">fetch</span> <span class="n">and</span> <span class="n">release</span> <span class="n">on</span> <span class="n">Server</span>
-                        <span class="o">|</span>
-                   <span class="o">+----</span><span class="n">v</span><span class="o">-----+</span>
-                   <span class="o">|</span> <span class="n">Server</span>   <span class="o">|</span>
-                   <span class="o">+----------+</span>
+<div class="highlight"><pre>                   +----------+
+                   | Develop  |
+                   +----+-----+
+                        |
+                        | push with sourcetree
+                        |
+                   +----v-----+
+                   | Bitbucket|
+                   +----+-----+
+                        |
+                        | fetch and release on Server
+                        |
+                   +----v-----+
+                   | Server   |
+                   +----------+
 </pre></div>
 
 
@@ -96,22 +100,22 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 <h3>服务端配置</h3>
 <p>生成public key并添加至bitbucket</p>
 <p>首先登陆<a href="https://bitbucket.org">https://bitbucket.org</a>,依次选择<code>Username &gt; Account &gt; SSH keys</code>。然后登陆服务器，生成public key：</p>
-<div class="highlight"><pre><span class="n">cd</span> <span class="o">~</span> <span class="o">&amp;&amp;</span> <span class="n">mkdir</span> <span class="p">.</span><span class="n">ssh</span>
-<span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="s">&quot;..&quot;</span>
-<span class="n">cat</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span>
+<div class="highlight"><pre>cd ~ &amp;&amp; mkdir .ssh
+ssh-keygen -t rsa -C &quot;..&quot;
+cat ~/.ssh/id_rsa.pub
 </pre></div>
 
 
 <p>添加完public key之后，执行如下命令：</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">Tv</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span>
+<div class="highlight"><pre>ssh -Tv git@bitbucket.org
 </pre></div>
 
 
 <p>之后即可正常使用git，无需账号密码，例如第一次使用时，如下：</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">First</span> <span class="n">commit</span><span class="err">&#39;</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span><span class="o">:</span><span class="n">YOUR</span><span class="p">.</span><span class="n">git</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+<div class="highlight"><pre>git add README.md
+git commit -m &#39;First commit&#39;
+git remote add origin git@bitbucket.org:YOUR.git
+git push origin master
 </pre></div>
 
 
@@ -146,8 +150,12 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../archives.html">Archives</a>
                 <li><a href="../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -204,14 +212,14 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

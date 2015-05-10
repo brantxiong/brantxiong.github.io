@@ -18,6 +18,10 @@
     <link href="../../../../theme/local.css" rel="stylesheet">
     <link href="../../../../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -65,12 +69,12 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 <p>今天要需要统计10w个query的页面构成，由于输入文件格式不标准，url编码不统一等各种问题，整个统计过程相当纠结...下面将其中的一些点记录下来，供以后参考</p>
 <h2>异常文件处理</h2>
 <p>删除文件最后的异常行：</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">file</span> <span class="n">in</span> <span class="err">`</span><span class="n">ls</span><span class="err">`</span><span class="p">;</span> <span class="k">do</span> <span class="n">line</span><span class="o">=</span><span class="err">`</span><span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="err">$</span><span class="n">file</span><span class="err">`</span><span class="p">;</span> <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$line&quot;</span> <span class="o">!=</span> <span class="s">&quot;},&quot;</span> <span class="p">];</span> <span class="n">then</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="err">&#39;$</span><span class="n">d</span><span class="err">&#39;</span> <span class="err">$</span><span class="n">file</span><span class="p">;</span><span class="n">fi</span><span class="p">;</span><span class="n">done</span>
+<div class="highlight"><pre><span class="x">for file in `ls`; do line=`tail -1 </span><span class="p">$</span><span class="nv">file</span><span class="x">`; if [ &quot;</span><span class="p">$</span><span class="nv">line</span><span class="x">&quot; != &quot;},&quot; ]; then sed -i &#39;</span><span class="p">$</span><span class="nv">d</span><span class="x">&#39; </span><span class="p">$</span><span class="nv">file</span><span class="x">;fi;done</span>
 </pre></div>
 
 
 <p>删除目录下的空文件：</p>
-<div class="highlight"><pre><span class="n">find</span> <span class="o">-</span><span class="n">maxdepth</span> <span class="mi">1</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">print0</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="mi">0</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+<div class="highlight"><pre>find -maxdepth 1 -type f -empty -print0 | xargs -0 rm -f
 </pre></div>
 
 
@@ -129,21 +133,21 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
 
 <h2>其他技巧</h2>
 <p>python计算平均数：</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">average</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">:</span>
-    <span class="k">return</span> <span class="kt">float</span><span class="p">(</span><span class="err">&#39;</span><span class="o">%</span><span class="mf">.2f</span><span class="err">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">len</span><span class="p">(</span><span class="n">values</span><span class="p">)))</span>
+<div class="highlight"><pre>def average(values):
+    return float(&#39;%.2f&#39; % (sum(values, 0.0) / len(values)))
 </pre></div>
 
 
 <p>python找出list中重复的值：</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">find_dup_value_from_list</span><span class="p">(</span><span class="n">inlist</span><span class="p">)</span><span class="o">:</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="n">in</span> <span class="n">collections</span><span class="p">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">inlist</span><span class="p">).</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight"><pre>def find_dup_value_from_list(inlist):
+    return [x for x, y in collections.Counter(inlist).items() if y &gt; 1]
 </pre></div>
 
 
 <p>python匹配出日志中key=value类型的值：</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">find_value_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="err">&#39;\</span><span class="n">s</span><span class="o">*</span><span class="err">&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="err">&#39;</span><span class="o">=</span><span class="p">(</span><span class="err">\</span><span class="n">w</span><span class="o">+</span><span class="p">)</span><span class="err">\</span><span class="n">s</span><span class="o">*</span><span class="err">&#39;</span> 
-    <span class="k">return</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<div class="highlight"><pre>def find_value_from_string(string, key):
+    regex = &#39;\s*&#39; + key + &#39;=(\w+)\s*&#39; 
+    return re.findall(regex, string)
 </pre></div>
 
 
@@ -179,8 +183,12 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
             
                 <li><a href="../../../../archives.html">Archives</a>
                 <li><a href="../../../../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -237,14 +245,14 @@ by <a class="url fn" href="../../../../author/brant-xiong.html">Brant Xiong</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="../../../..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>

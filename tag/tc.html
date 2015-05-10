@@ -18,6 +18,10 @@
     <link href="../theme/local.css" rel="stylesheet">
     <link href="../theme/pygments.css" rel="stylesheet">
 
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Brant Xiong's Blog" type="application/atom+xml">
+        <link href="feeds/all.rss.xml" rel="alternate" title="Brant Xiong's Blog" type="application/rss+xml">
+
 </head>
 
 <body>
@@ -112,43 +116,43 @@ by <a class="url fn" href="../author/brant-xiong.html">Brant Xiong</a>
 
 <span class="nb">set</span> -x
 start <span class="o">()</span> <span class="o">{</span>
-    /sbin/tc qdisc add dev <span class="k">${</span><span class="nv">NETWORK_CARD</span><span class="k">}</span> root handle 1: htb default 25
-    /sbin/tc class add dev <span class="k">${</span><span class="nv">NETWORK_CARD</span><span class="k">}</span> parent 1: classid 1:1 htb rate <span class="k">${</span><span class="nv">SPEED</span><span class="k">}</span>kbps
-    /sbin/tc qdisc add dev <span class="k">${</span><span class="nv">NETWORK_CARD</span><span class="k">}</span> parent 1:1 netem delay <span class="k">${</span><span class="nv">DELAY</span><span class="k">}</span>ms <span class="k">${</span><span class="nv">FLOW</span><span class="k">}</span>ms
-    /sbin/tc filter add dev <span class="k">${</span><span class="nv">NETWORK_CARD</span><span class="k">}</span> parent 1: protocol ip prio 1 u32 match ip sport <span class="k">${</span><span class="nv">PORT</span><span class="k">}</span> 0xffff flowid 1:1
+    /sbin/tc qdisc add dev <span class="si">${</span><span class="nv">NETWORK_CARD</span><span class="si">}</span> root handle 1: htb default 25
+    /sbin/tc class add dev <span class="si">${</span><span class="nv">NETWORK_CARD</span><span class="si">}</span> parent 1: classid 1:1 htb rate <span class="si">${</span><span class="nv">SPEED</span><span class="si">}</span>kbps
+    /sbin/tc qdisc add dev <span class="si">${</span><span class="nv">NETWORK_CARD</span><span class="si">}</span> parent 1:1 netem delay <span class="si">${</span><span class="nv">DELAY</span><span class="si">}</span>ms <span class="si">${</span><span class="nv">FLOW</span><span class="si">}</span>ms
+    /sbin/tc filter add dev <span class="si">${</span><span class="nv">NETWORK_CARD</span><span class="si">}</span> parent 1: protocol ip prio <span class="m">1</span> u32 match ip sport <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span> 0xffff flowid 1:1
 <span class="o">}</span>
 
 stop <span class="o">()</span> <span class="o">{</span>
-    /sbin/tc qdisc dele dev <span class="k">${</span><span class="nv">NETWORK_CARD</span><span class="k">}</span> root
+    /sbin/tc qdisc dele dev <span class="si">${</span><span class="nv">NETWORK_CARD</span><span class="si">}</span> root
 <span class="o">}</span>
 
-<span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in    
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in    
     start<span class="o">)</span>
         start
-        ;;
+        <span class="p">;;</span>
     stop<span class="o">)</span>
         stop
-        ;;
+        <span class="p">;;</span>
     *<span class="o">)</span>
-        <span class="nb">echo</span> <span class="s2">&quot;Usage: `basename $0` {start|stop} port delay(ms) speed(KB) flow(ms)&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Usage: `basename </span><span class="nv">$0</span><span class="s2">` {start|stop} port delay(ms) speed(KB) flow(ms)&quot;</span>
 <span class="k">esac</span>
 </pre></div>
 </td></tr></table>
 
 <h3>使用方法</h3>
-<div class="highlight"><pre><span class="mi">3</span><span class="n">g</span> <span class="err">限制</span><span class="n">http</span><span class="err">：</span> <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8900</span> <span class="mi">200</span> <span class="mi">355</span> <span class="mi">0</span>
-<span class="mi">3</span><span class="n">g</span> <span class="err">限制</span><span class="n">Spdy</span><span class="err">：</span> <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8901</span> <span class="mi">200</span> <span class="mi">355</span> <span class="mi">0</span>
+<div class="highlight"><pre>3g 限制http： sh /root/net_limit.sh start 8900 200 355 0
+3g 限制Spdy： sh /root/net_limit.sh start 8901 200 355 0
 
-<span class="err">慢</span><span class="n">wifi</span><span class="err">限制</span><span class="n">http</span><span class="o">:</span>  <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8900</span> <span class="mi">80</span> <span class="mi">2048</span> <span class="mi">0</span>
-<span class="err">慢</span><span class="n">wifi</span><span class="err">限制</span><span class="n">spdy</span><span class="o">:</span>  <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8901</span> <span class="mi">80</span> <span class="mi">2048</span> <span class="mi">0</span>
+慢wifi限制http:  sh /root/net_limit.sh start 8900 80 2048 0
+慢wifi限制spdy:  sh /root/net_limit.sh start 8901 80 2048 0
 
-<span class="err">快</span><span class="n">wifi</span><span class="err">限制</span><span class="n">http</span><span class="o">:</span> <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8900</span> <span class="mi">40</span> <span class="mi">14748</span> <span class="mi">0</span>
-<span class="err">快</span><span class="n">wifi</span><span class="err">限制</span><span class="n">spdy</span><span class="o">:</span> <span class="n">sh</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">net_limit</span><span class="p">.</span><span class="n">sh</span> <span class="n">start</span> <span class="mi">8901</span> <span class="mi">40</span> <span class="mi">14748</span> <span class="mi">0</span>
+快wifi限制http: sh /root/net_limit.sh start 8900 40 14748 0
+快wifi限制spdy: sh /root/net_limit.sh start 8901 40 14748 0
 </pre></div>
 
 
 <p>查看当前限制</p>
-<div class="highlight"><pre><span class="n">tc</span> <span class="o">-</span><span class="n">s</span> <span class="n">qdisc</span> <span class="n">ls</span> <span class="n">dev</span> <span class="n">eth1</span>
+<div class="highlight"><pre>tc -s qdisc ls dev eth1
 </pre></div></div>
         <hr />
     </div>
@@ -177,8 +181,12 @@ stop <span class="o">()</span> <span class="o">{</span>
             
                 <li><a href="../archives.html">Archives</a>
                 <li><a href="../tags.html">Tags</a>
-                <li><a href="http://brantxiong.github.io/" rel="alternate">Atom feed</a></li>
+
+
+
+                <li><a href="http://brantxiong.github.io/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
                 <li><a href="http://brantxiong.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
             </ul>
             </div>
 
@@ -235,14 +243,14 @@ stop <span class="o">()</span> <span class="o">{</span>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2014</p>
+<p><a href="..">Brant Xiong's Blog</a> &copy; Brant Xiong 2012</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
 <script>var _gaq=[['_setAccount','UA-48122862-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Follow me on GitHub" /></a>
+<a href="https://github.com/brantxiong"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
  
 </body>
 </html>
