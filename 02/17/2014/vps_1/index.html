@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Brant Xiong">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VPS介绍 购买网址：http:&#x2F;&#x2F;www.xehost.com 系统：ubuntu 10.04 lsb_release -a Control Panel：https:&#x2F;&#x2F;cp.vps6.com  增加非root用户当以root权限登陆一台全新的VPS之后，第一件事情就是增加拥有sudo权限的非root用户，目的如下:  it prevents the user making any system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu10.04 VPS配置（一）基础环境篇">
+<meta property="og:url" content="https://brantxiong.github.io/02/17/2014/vps_1/index.html">
+<meta property="og:site_name" content="Brant Xiong&#39;s Blog">
+<meta property="og:description" content="VPS介绍 购买网址：http:&#x2F;&#x2F;www.xehost.com 系统：ubuntu 10.04 lsb_release -a Control Panel：https:&#x2F;&#x2F;cp.vps6.com  增加非root用户当以root权限登陆一台全新的VPS之后，第一件事情就是增加拥有sudo权限的非root用户，目的如下:  it prevents the user making any system">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-02-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-19T08:23:38.503Z">
+<meta property="article:author" content="Brant Xiong">
+<meta property="article:tag" content="vps ubuntu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Ubuntu10.04 VPS配置（一）基础环境篇 - Brant Xiong&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"brantxiong.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Brant Xiong</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>作品</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Ubuntu10.04 VPS配置（一）基础环境篇</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2014-02-17 00:00" pubdate>
+          2014年2月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          803 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Ubuntu10.04 VPS配置（一）基础环境篇</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="VPS介绍"><a href="#VPS介绍" class="headerlink" title="VPS介绍"></a>VPS介绍</h2><ul>
+<li>购买网址：<a target="_blank" rel="noopener" href="http://www.xehost.com/">http://www.xehost.com</a></li>
+<li>系统：<code>ubuntu 10.04 lsb_release -a</code></li>
+<li>Control Panel：<a target="_blank" rel="noopener" href="https://cp.vps6.com/">https://cp.vps6.com</a></li>
+</ul>
+<h4 id="增加非root用户"><a href="#增加非root用户" class="headerlink" title="增加非root用户"></a>增加非root用户</h4><p>当以root权限登陆一台全新的VPS之后，第一件事情就是增加拥有sudo权限的非root用户，目的如下:</p>
+<ul>
+<li>it prevents the user making any system-destroying mistakes</li>
+<li>it stores all the commands run with sudo to a file where can be reviewed later if needed</li>
+</ul>
+<p>增加用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> adduser work<br></code></pre></td></tr></table></figure>
+
+<p>增加sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> /usr/sbin/visudo<br>    <br><span class="hljs-comment"># User privilege specification</span><br>rootALL=(ALL:ALL) ALL<br>workALL=(ALL:ALL) ALL<br></code></pre></td></tr></table></figure>
+
+<p>删除用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> userdel newuser<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /home/newuser<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装tmux-1-8"><a href="#安装tmux-1-8" class="headerlink" title="安装tmux 1.8"></a>安装tmux 1.8</h3><p>ubuntu Lucid源中的tmux版本过老，为此，我们手动安装tmux 1.8，</p>
+<p>安装基础编译环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install build-essential<br></code></pre></td></tr></table></figure>
+
+<p>安装依赖包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz<br>tar xzf libevent-2.0.21-stable.tar.gz<br><span class="hljs-built_in">cd</span> libevent-2.0.21-stable<br>configure &amp;&amp; make &amp;&amp; <span class="hljs-built_in">sudo</span> make install<br><span class="hljs-built_in">sudo</span> apt-get install ncurses-dev<br></code></pre></td></tr></table></figure>
+
+<p>安装tmux 1.8</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget http://downloads.sourceforge.net/tmux/tmux-1.8.tar.gz<br>tar xzf tmux-1.8.tar.gz<br><span class="hljs-built_in">cd</span> tmux-1.8<br>./configure LDFLAGS=<span class="hljs-string">&quot;-Wl,-rpath /usr/local/lib&quot;</span><br>make<br><span class="hljs-built_in">sudo</span> make install<br></code></pre></td></tr></table></figure>
+
+<p>非root运行tmux技巧</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash -c <span class="hljs-string">&quot;export LD_LIBRARY_PATH=~/tool/bin/lib:<span class="hljs-variable">$LD_LIBRARY_PATH</span> &amp;&amp; ~/tool/bin/bin/tmux a || ~/tool/bin/bin/tmux -f ~/tool/conf/tmux.conf&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="tmux-配置文件"><a href="#tmux-配置文件" class="headerlink" title="tmux 配置文件"></a>tmux 配置文件</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs conf">set -g prefix ^a<br>unbind ^b<br>bind a send-prefix<br>unbind &#x27;&quot;&#x27;<br>bind - splitw -v # horizontal split<br>unbind %<br>bind | splitw -h # vertical split<br>bind k selectp -U # select upper pane<br>bind j selectp -D # select lower pane<br>bind h selectp -L # select left pane<br>bind l selectp -R # select right pane<br>bind ^k resizep -U 10<br>bind ^j resizep -D 10<br>bind ^h resizep -L 10<br>bind ^l resizep -R 10<br>bind ^u swapp -U # swap with upper pane<br>bind ^d swapp -D # swap with lower pane<br>    <br># THEME<br>set -g status-bg black<br>set -g status-fg white<br>set -g window-status-current-bg white<br>set -g window-status-current-fg black<br>set -g window-status-current-attr bold<br>set -g status-interval 60<br>set -g status-left-length 30<br>set -g status-left &#x27;#[fg=green](#S) #(whoami)&#x27;<br>set -g status-right &quot;#[fg=green]#(date)#[default] #[fg=green]#(cut -d &#x27; &#x27; -f 1-3 /proc/loadavg)#[default]&quot;<br><br>setw -g mode-keys vi<br>setw -g mode-mouse off<br>set -g terminal-overrides &#x27;xterm*:smcup@:rmcup@&#x27;<br>set -g base-index 1<br>#set -s escape-time 0<br>setw -g aggressive-resize on<br><br>unbind r<br>bind r source-file ~/.tmux.conf<br><br>set -g history-limit 25000<br><br>#T-Mobile G2 workarounds<br>bind Q send-keys F1<br>bind W send-keys F2<br>bind E send-keys F3<br>bind R send-keys F4<br>bind T send-keys F5<br>bind Y send-keys F6<br>bind U send-keys F7<br>bind I send-keys F8<br>bind O send-keys F9<br>bind P send-keys F10<br>bind A send-keys F11<br>bind S send-keys F12<br><br>bind / send-keys |<br><br>unbind t<br>bind t send-keys Tab<br><br>unbind N<br>bind N clock-mode<br><br>unbind @<br>bind @ send-keys Escape<br><br>unbind H<br>bind H send-keys Home<br><br>unbind L<br>bind L send-keys End<br><br>unbind J<br>bind J send-keys PageDown<br><br>unbind K<br>bind K send-keys PageUp<br><br>#Alt-n window switching<br>unbind M-1<br>unbind M-2<br>unbind M-3<br>unbind M-4<br>unbind M-5<br>unbind M-6<br>unbind M-7<br>unbind M-8<br>unbind M-9<br>bind-key -n M-1 select-window -t :1<br>bind-key -n M-2 select-window -t :2<br>bind-key -n M-3 select-window -t :3<br>bind-key -n M-4 select-window -t :4<br>bind-key -n M-5 select-window -t :5<br>bind-key -n M-6 select-window -t :6<br>bind-key -n M-7 select-window -t :7<br>bind-key -n M-8 select-window -t :8<br>bind-key -n M-9 select-window -t :9<br><br>bind-key -n ^PageDown next-window<br>bind-key -n ^PageUp previous-window<br><br>#set -g default-terminal &quot;screen-256color&quot;<br>#For compatibility<br>set -g default-terminal &quot;xterm-color&quot;<br><br>##CLIPBOARD selection integration<br>##Requires prefix key before the command key<br>#Copy tmux paste buffer to CLIPBOARD<br>bind C-c run &quot;tmux show-buffer | xclip -i -selection clipboard&quot;<br>#Copy CLIPBOARD to tmux paste buffer and paste tmux paste buffer<br>bind C-v run &quot;tmux set-buffer \&quot;$(xclip -o -selection clipboard)\&quot;; tmux paste-buffer&quot;<br></code></pre></td></tr></table></figure>
+<h3 id="locale设置"><a href="#locale设置" class="headerlink" title="locale设置"></a>locale设置</h3><p>查看locale</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看当前系统语言环境</span><br>locale<br><br><span class="hljs-comment"># 查看系统内安装的locale</span><br>locale -a<br></code></pre></td></tr></table></figure>
+
+<p>安装<code>zh_CN.utf8</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/share/locales<br><span class="hljs-built_in">sudo</span> ./install-language-pack zh_CN<br></code></pre></td></tr></table></figure>
+
+<p>locale配置： <code>/etc/default/locale</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs text">LANG=en_US.UTF-8<br>LANGUAGE=<br>LC_CTYPE=&quot;en_US.UTF-8&quot;<br>LC_NUMERIC=zh_CN.UTF-8<br>LC_TIME=zh_CN.UTF-8<br>LC_COLLATE=&quot;en_US.UTF-8&quot;<br>LC_MONETARY=zh_CN.UTF-8<br>LC_MESSAGES=&quot;en_US.UTF-8&quot;<br>LC_PAPER=zh_CN.UTF-8<br>LC_NAME=zh_CN.UTF-8<br>LC_ADDRESS=zh_CN.UTF-8<br>LC_TELEPHONE=zh_CN.UTF-8<br>LC_MEASUREMENT=zh_CN.UTF-8<br>LC_IDENTIFICATION=zh_CN.UTF-8<br>LC_ALL=<br></code></pre></td></tr></table></figure>
+
+<h3 id="mosh-安装与配置"><a href="#mosh-安装与配置" class="headerlink" title="mosh 安装与配置"></a>mosh 安装与配置</h3><p>由于VPS在美国，ssh连接速度很慢，考虑用mosh解决该问题</p>
+<p>The mosh-client binary must exist on the user’s machine, and the mosh-server binary on the remote host.</p>
+<p>参考：<a target="_blank" rel="noopener" href="http://mosh.mit.edu/">http://mosh.mit.edu/</a></p>
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> add-apt-repository ppa:keithw/mosh<br><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install mosh<br></code></pre></td></tr></table></figure>
+
+<p>防火墙配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -I INPUT 1 -p udp --dport 60000:61000 -j ACCEPT<br></code></pre></td></tr></table></figure>
+
+<p>mosh登陆</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mosh work@162.221.4.10<br></code></pre></td></tr></table></figure>
+
+<h3 id="ftp-server安装"><a href="#ftp-server安装" class="headerlink" title="ftp server安装"></a>ftp server安装</h3><p>安装ftp server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install vsftpd<br></code></pre></td></tr></table></figure>
+
+<p>配置：<code>/etc/vsftpd.conf</code></p>
+<p>生效如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs conf">chroot_local_user=YES<br>chroot_list_enable=YES<br>chroot_list_file=/etc/vsftpd.chroot_list<br></code></pre></td></tr></table></figure>
+
+
+<p>重启ftp</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> /etc/init.d/vsftpd restart<br></code></pre></td></tr></table></figure>
+
+<h3 id="nginx-安装与配置"><a href="#nginx-安装与配置" class="headerlink" title="nginx 安装与配置"></a>nginx 安装与配置</h3><p>参考：<a target="_blank" rel="noopener" href="http://wiki.nginx.org/Install">http://wiki.nginx.org/Install</a></p>
+<p>安装add-apt-repository</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install python-software-properties<br></code></pre></td></tr></table></figure>
+
+<p>安装nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> add-apt-repository ppa:nginx/stable<br><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install nginx<br></code></pre></td></tr></table></figure>
+
+<p>nginx 配置：<code>/etc/nginx</code><br>参考：<a target="_blank" rel="noopener" href="http://blog.martinfjordvald.com/2010/07/nginx-primer">http://blog.martinfjordvald.com/2010/07/nginx-primer</a></p>
+<h3 id="php-fpm-mysql-安装"><a href="#php-fpm-mysql-安装" class="headerlink" title="php-fpm&amp;mysql 安装"></a>php-fpm&amp;mysql 安装</h3><p>增加ppa</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-add-repository ppa:ondrej/php5-oldstable<br></code></pre></td></tr></table></figure>
+
+<p>安装php组件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> aptitude -y install php5-cli php5-common php5-mysql php5-suhosin php5-gd<br><span class="hljs-built_in">sudo</span> aptitude -y install php5-fpm php5-cgi php-pear php5-memcache php-apc<br></code></pre></td></tr></table></figure>
+
+<h4 id="ubuntu-增加lib"><a href="#ubuntu-增加lib" class="headerlink" title="ubuntu 增加lib"></a>ubuntu 增加lib</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/ld.so.conf.d/newlib.conf<br><span class="hljs-comment"># Add the path to file and save it</span><br><br><span class="hljs-built_in">sudo</span> ldconfig<br></code></pre></td></tr></table></figure>
+
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2><p>本人最近折腾了好几台VPS（国内外），国内用的阿里云用的是ubuntu 12.04，软件源较新，安装软件远没有以上ubuntu10.04折腾…喵，VPS配置第二篇将会涉及VPS安全相关的内容<del>后续也会陆续在Github上分享本人的vim, bashrc等配置</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vps-ubuntu/" class="print-no-link">#vps ubuntu</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ubuntu10.04 VPS配置（一）基础环境篇</div>
+      <div>https://brantxiong.github.io/02/17/2014/vps_1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Brant Xiong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2014年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/02/17/2014/tc_usage/" title="利用tc工具做限速">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">利用tc工具做限速</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/02/16/2014/build_blog/" title="利用github搭建个人博客">
+                        <span class="hidden-mobile">利用github搭建个人博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
